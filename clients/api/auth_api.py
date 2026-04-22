@@ -4,6 +4,7 @@ import os
 import requests
 from custom_requester.custom_requester import CustomRequester
 from constants import BASE_URL, LOGIN_ENDPOINT, REGISTER_ENDPOINT
+from models.test_user_model import LoginUserResponse
 
 
 class AuthAPI(CustomRequester):
@@ -28,12 +29,13 @@ class AuthAPI(CustomRequester):
 
     def authenticate(self, email: str, password: str):
         login_data = {"email": email, "password": password}
-        response = self.login_user(login_data).json()
-        if "accessToken" not in response:
-            raise KeyError("Токен отсутсвует!!!!")
+        response = self.login_user(login_data)
+        response_data = LoginUserResponse(**response.json())
 
-        token = response["accessToken"]
-        self._update_session_headers(**{"authorization": f"Bearer {token}"})
+        self._update_session_headers(
+            **{"authorization": f"Bearer {response_data.accessToken}"}
+        )
+        return response_data
 
     def admin_auth(self):
         admin_email = os.getenv("ADMIN_EMAIL")

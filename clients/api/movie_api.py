@@ -1,11 +1,11 @@
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Union
 import requests
 from requests import Response
 
 
 from custom_requester.custom_requester import CustomRequester
 from constants import MOVIE_URL, MOVIE_ENDPOINT
-from models.movies_models import MoviesQweryParams
+from models.movies_models import MoviesQueryParams, MovieData
 from utils.data_generator import DataGenerator
 
 
@@ -15,7 +15,7 @@ class MoviesAPI(CustomRequester):
         self.session = session
 
     def get_movie(
-        self, params: Optional[MoviesQweryParams] = None, expected_status: int = 200
+        self, params: Optional[MoviesQueryParams] = None, expected_status: int = 200
     ):
         """
         Получение списка фильмов.
@@ -23,31 +23,52 @@ class MoviesAPI(CustomRequester):
         :param expected_status: ожидаемый статус код
         :return: response object
         """
-        query_params = params if params is not None else MoviesQweryParams()
+
+        if params is None:
+            query_params = {}
+        elif isinstance(params, MoviesQueryParams):
+            query_params = params.to_dict()
+        else:
+            query_params = params
 
         return self.send_request(
-            method="GET", endpoint=MOVIE_ENDPOINT, expected_status=expected_status
+            method="GET",
+            endpoint=MOVIE_ENDPOINT,
+            params=query_params,
+            expected_status=expected_status,
         )
 
-    def get_movie_id(self, movie_id: int, expected_staus: int = 200):
+    def get_movie_id(self, movie_id: int, expected_status: int = 200):
         return self.send_request(
             method="GET",
             endpoint=f"{MOVIE_ENDPOINT}/{movie_id}",
-            expected_status=expected_staus,
+            expected_status=expected_status,
         )
 
-    def create_movie(self, movie_data: dict, expected_status: int = 201):
+    def create_movie(
+        self,
+        movie_data: Union[MovieData, dict, None] = None,
+        expected_status: int = 201,
+    ):
         if movie_data is None:
             movie_data = DataGenerator.generate_movie_data()
+        if isinstance(movie_data, MovieData):
+            payload = movie_data.model_dump(mode="json")
+        else:
+            payload = movie_data
+
         return self.send_request(
             method="POST",
             endpoint=MOVIE_ENDPOINT,
-            data=movie_data,
+            data=payload,
             expected_status=expected_status,
         )
 
     def patch_movie(
-        self, movie_id: int, movie_data: dict, expected_status: int = 200
+        self,
+        movie_id: int,
+        movie_data: Union[dict, MovieData],
+        expected_status: int = 200,
     ) -> Response:
         """
             Частичное обновление фильма (PATCH /movies/{id}).
@@ -56,10 +77,15 @@ class MoviesAPI(CustomRequester):
         :param expected_status: Ожидаемый статус код (по умолчанию 200)
         :return: Response object
         """
+        if isinstance(movie_data, MovieData):
+            payload = movie_data.model_dump(mode="json")
+        else:
+            payload = movie_data
+
         return self.send_request(
             method="PATCH",
             endpoint=f"{MOVIE_ENDPOINT}/{movie_id}",
-            data=movie_data,
+            data=payload,
             expected_status=expected_status,
         )
 

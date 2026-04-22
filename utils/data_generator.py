@@ -3,6 +3,9 @@ import string
 import uuid
 from faker import Faker
 
+from enums.location import Location
+from models.movies_models import MovieData
+
 faker = Faker()
 
 
@@ -37,7 +40,9 @@ class DataGenerator:
         # Дополняем пароль случайными символами из допустимого набора
         special_chars = "?@#$%^&*|:"
         all_chars = string.ascii_letters + string.digits + special_chars
-        remaining_length = random.randint(8, 20)
+        total_length = random.randint(8, 20)
+        remaining_length = total_length - 3
+        remaining_length = max(0, remaining_length)
         remaining_chars = "".join(random.choices(all_chars, k=remaining_length))
 
         # перемешиваем пароль для рандомизации
@@ -46,20 +51,20 @@ class DataGenerator:
 
         return "".join(password)
 
-    @staticmethod
-    def generate_user_payload(verified: bool = True, banned: bool = False):
-        """Генерация рандомного пользователя для POST/user"""
-        random_email = DataGenerator.generate_random_email()
-        random_name = DataGenerator.generate_random_name()
-        random_password = DataGenerator.generate_random_password()
-
-        return {
-            "fullName": random_name,
-            "email": random_email,
-            "password": random_password,
-            "verified": verified,
-            "banned": banned,
-        }
+    # @staticmethod
+    # def generate_user_payload(verified: bool = True, banned: bool = False):
+    #     """Генерация рандомного пользователя для POST/user"""
+    #     random_email = DataGenerator.generate_random_email()
+    #     random_name = DataGenerator.generate_random_name()
+    #     random_password = DataGenerator.generate_random_password()
+    #
+    #     return {
+    #         "fullName": random_name,
+    #         "email": random_email,
+    #         "password": random_password,
+    #         "verified": verified,
+    #         "banned": banned,
+    #     }
 
     @staticmethod
     def generate_movie_data(
@@ -67,6 +72,7 @@ class DataGenerator:
         published: bool = True,
         genre_id: int = None,
         price: int = None,
+        location: Location = None,
     ):
         """
         Генерация данных для создания фильма.
@@ -81,15 +87,18 @@ class DataGenerator:
         if price is None:
             price = random.randint(1, 1000)
 
-        return {
-            "name": name,
-            "imageUrl": faker.image_url(),
-            "price": price,
-            "description": faker.text(max_nb_chars=80),
-            "location": random.choice(["MSK", "SPB"]),
-            "published": published,
-            "genreId": genre_id,
-        }
+        if location is None:
+            location = random.choice(list(Location))
+
+        return MovieData(
+            name=name,
+            imageUrl=faker.image_url(),
+            price=price,
+            description=faker.text(max_nb_chars=80),
+            location=location,
+            published=published,
+            genreId=genre_id,
+        )
 
     @staticmethod
     def generate_random_price():
