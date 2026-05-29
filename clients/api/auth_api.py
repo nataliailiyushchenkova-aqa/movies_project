@@ -1,17 +1,29 @@
-from typing import Dict
+from typing import Dict, Any
 import os
 
 import requests
+import allure
+from requests import Response
+
 from custom_requester.custom_requester import CustomRequester
 from constants import BASE_URL, LOGIN_ENDPOINT, REGISTER_ENDPOINT
-from models.test_user_model import LoginUserResponse
+from models.test_user_model import (
+    LoginUserResponse,
+    LoginUserRequest,
+    UserTestData,
+    RegisteredUserResponse,
+)
+from utils.response_parser import deserialize_response
 
 
 class AuthAPI(CustomRequester):
     def __init__(self, session: requests.Session):
         super().__init__(session=session, base_url=BASE_URL)
 
-    def register_user(self, user_data: dict[str, str], expected_status: int = 201):
+    @allure.step("Зарегистрировать пользователя")
+    def register_user(
+        self, user_data: UserTestData, expected_status: int = 201
+    ) -> Response:
         return self.send_request(
             method="POST",
             endpoint=REGISTER_ENDPOINT,
@@ -19,7 +31,10 @@ class AuthAPI(CustomRequester):
             expected_status=expected_status,
         )
 
-    def login_user(self, login_data: dict[str, str], expected_status: int = 200):
+    @allure.step("Отправить запрос на login пользователя")
+    def login_user(
+        self, login_data: LoginUserRequest | dict[str, Any], expected_status: int = 200
+    ) -> Response:
         return self.send_request(
             method="POST",
             endpoint=LOGIN_ENDPOINT,
@@ -27,17 +42,13 @@ class AuthAPI(CustomRequester):
             expected_status=expected_status,
         )
 
-    def authenticate(self, email: str, password: str):
-        login_data = {"email": email, "password": password}
-        response = self.login_user(login_data)
-        response_data = LoginUserResponse(**response.json())
+    @allure.step("Аутентифицировать пользователя")
+    def authenticate(self, creds: LoginUserRequest) -> LoginUserResponse:
+        response = self.login_user(creds)
+
+        login_response = deserialize_response(response, LoginUserResponse)
 
         self._update_session_headers(
-            **{"authorization": f"Bearer {response_data.accessToken}"}
+            authorization=f"Bearer {login_response.accessToken}"
         )
-        return response_data
-
-    def admin_auth(self):
-        admin_email = os.getenv("ADMIN_EMAIL")
-        admin_password = os.getenv("ADMIN_PASSWORD")
-        self.authenticate(email=admin_email, password=admin_password)
+        return login_response

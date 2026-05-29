@@ -1,0 +1,174 @@
+2026-05-13 22:09:10 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:10 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_get_movies_filtered[location_SPB_filter]  [0m
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru/movies?locations=SPB \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ' \
+
+2026-05-13 22:09:10 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:10 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "movies": [
+        {
+            "id": 463,
+            "name": "abcdef",
+            "description": "Movie description",
+            "genreId": 1,
+            "imageUrl": "https://image.url",
+            "price": 100,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-20T18:08:45.512Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 567,
+            "name": "Сбалансированное и круглосуточное определение",
+            "description": "Освобождение инфекция добиться запеть. Оборот зима сустав ученый. Вперед поймать опасность возникновение рота потом провинция низкий.\nСопровождаться палата мимо термин. Девка помимо пастух.",
+            "genreId": 3,
+            "imageUrl": null,
+            "price": 325,
+            "rating": 1,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-20T20:58:24.362Z",
+            "genre": {
+                "name": "Фантастика"
+            }
+        },
+        {
+            "id": 574,
+            "name": "Новая и составная служба поддержки",
+            "description": "Natural reflect brother city. Central because late star much president gun standard. Social push four final.",
+            "genreId": 3,
+            "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9G",
+            "price": 697,
+            "rating": 5,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-20T20:59:05.958Z",
+            "genre": {
+                "name": "Фантастика"
+            }
+        },
+        {
+            "id": 582,
+            "name": "Управляемая и максимальная вероятность",
+            "description": "Правление командир провал пересечь юный иной сустав отметить. Аллея кольцо упорно советовать освобождение. Войти металл гулять прежний.",
+            "genreId": 3,
+            "imageUrl": null,
+            "price": 1000,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-20T20:59:23.188Z",
+            "genre": {
+                "name": "Фантастика"
+            }
+        },
+        {
+            "id": 588,
+            "name": "Многогранная и переходная проекция",
+            "description": "Господь реклама демократия чем горький пламя крутой фонарик. Боец пересечь через уточнить слать сынок. Господь заявление жидкий порода хлеб соответствие горький.",
+            "genreId": 3,
+            "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9G",
+            "price": 517,
+            "rating": 4,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-20T20:59:56.582Z",
+            "genre": {
+                "name": "Фантастика"
+            }
+        },
+        {
+            "id": 589,
+            "name": "Single way.",
+            "description": "Safe these matter set letter.\nLet eye however. Glass off factor TV send two such. Whatever wish born. Party be decide environment daughter push chair partner.",
+            "genreId": 4,
+            "imageUrl": "https://dummyimage.com/11x659",
+            "price": 258,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-20T20:59:56.997Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 636,
+            "name": "Прочное и раздвоенное отношение",
+            "description": "Вытаскивать разнообразный мелочь отъезд возникновение.\nОчко поговорить направо падаль.\nКонференция спешить посвятить белье. Строительство рот ставить дремать запеть проход блин.",
+            "genreId": 2,
+            "imageUrl": "http://kompanija.ru/",
+            "price": 473,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-21T10:02:11.448Z",
+            "genre": {
+                "name": "Комедия"
+            }
+        },
+        {
+            "id": 663,
+            "name": "Фундаментальный и прибыльный подход",
+            "description": "Успокоиться передо материя тюрьма штаб неудобно пропадать. Способ мелькнуть запеть отдел.",
+            "genreId": 2,
+            "imageUrl": "http://chernova.info/",
+            "price": 235,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-21T11:57:35.419Z",
+            "genre": {
+                "name": "Комедия"
+            }
+        },
+        {
+            "id": 706,
+            "name": "Виртуальная и контекстуальная конгломерация",
+            "description": "Степь находить металл результат. Падаль оборот пересечь нервно. Поставить нажать приличный растеряться.",
+            "genreId": 3,
+            "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9G",
+            "price": 495,
+            "rating": 7,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-21T15:00:42.279Z",
+            "genre": {
+                "name": "Фантастика"
+            }
+        },
+        {
+            "id": 720,
+            "name": "Адаптивная и третичная служба техподдержки",
+            "description": "Порт гулять выбирать дошлый крыса инвалид. Расстегнуть исследование пастух идея.\nУпорно художественный отдел.",
+            "genreId": 3,
+            "imageUrl": null,
+            "price": 567,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-21T21:25:57.072Z",
+            "genre": {
+                "name": "Фантастика"
+            }
+        }
+    ],
+    "count": 5720,
+    "page": 1,
+    "pageSize": 10,
+    "pageCount": 572
+}
+2026-05-13 22:09:10 [32mINFO[0m ================================================================================

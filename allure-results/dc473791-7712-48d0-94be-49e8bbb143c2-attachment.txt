@@ -1,0 +1,181 @@
+2026-05-13 22:09:20 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:20 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_patch_movie_single_field_rbac[admin_cannot_edit] (setup) [0m
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Cookie: refresh_token=fa8129a9-e091-41c7-b908-069a19954ee7'\
+-H 'Content-Length: 182' \
+-d '{"email": "kekow68ien6@gmail.com", "fullName": "Jonathan Anderson", "password": ":YE4Sn|gUrC", "passwordRepeat": ":YE4Sn|gUrC", "roles": ["ADMIN"], "banned": false, "verified": true}' 
+
+2026-05-13 22:09:20 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:20 [32mINFO[0m 	STATUS_CODE: [32m 201 [0m
+	DATA:
+{
+    "id": "36ba44cc-3103-4991-9192-62c3ddaa6efc",
+    "email": "kekow68ien6@gmail.com",
+    "fullName": "Jonathan Anderson",
+    "verified": true,
+    "banned": false,
+    "roles": [
+        "USER"
+    ],
+    "createdAt": "2026-05-13T19:09:20.616Z"
+}
+2026-05-13 22:09:20 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:20 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:20 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_patch_movie_single_field_rbac[admin_cannot_edit] (setup) [0m
+curl -X PATCH 'https://auth.dev-cinescope.coconutqa.ru/user/36ba44cc-3103-4991-9192-62c3ddaa6efc \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Cookie: refresh_token=fa8129a9-e091-41c7-b908-069a19954ee7'\
+-H 'Content-Length: 20' \
+-d '{"roles": ["ADMIN"]}' 
+
+2026-05-13 22:09:20 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:20 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "email": "kekow68ien6@gmail.com",
+    "fullName": "Jonathan Anderson",
+    "verified": true,
+    "banned": false,
+    "roles": [
+        "ADMIN"
+    ],
+    "createdAt": "2026-05-13T19:09:20.616Z"
+}
+2026-05-13 22:09:20 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:21 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:21 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_patch_movie_single_field_rbac[admin_cannot_edit] (setup) [0m
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'Content-Length: 61' \
+-d '{"email": "kekow68ien6@gmail.com", "password": ":YE4Sn|gUrC"}' 
+
+2026-05-13 22:09:21 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:21 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "user": {
+        "id": "36ba44cc-3103-4991-9192-62c3ddaa6efc",
+        "email": "kekow68ien6@gmail.com",
+        "fullName": "Jonathan Anderson",
+        "roles": [
+            "ADMIN"
+        ]
+    },
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM2YmE0NGNjLTMxMDMtNDk5MS05MTkyLTYyYzNkZGFhNmVmYyIsImVtYWlsIjoia2Vrb3c2OGllbjZAZ21haWwuY29tIiwicm9sZXMiOlsiQURNSU4iXSwidmVyaWZpZWQiOnRydWUsImlhdCI6MTc3ODY5OTM2MSwiZXhwIjoxNzc4NzAxMTYxfQ.z3oL7id_FQWY7z9HF0wg-qfnAvqknNBpOIUCYtDiqcc",
+    "refreshToken": "ee3c98e9-4498-426c-8340-1c9ab7d80a18",
+    "expiresIn": 1778701161328
+}
+2026-05-13 22:09:21 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:21 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:21 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_patch_movie_single_field_rbac[admin_cannot_edit] (setup) [0m
+curl -X POST 'https://api.dev-cinescope.coconutqa.ru/movies \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 219' \
+-d '{"name": "Indeed challenge idea against.", "imageUrl": "https://dummyimage.com/819x697", "price": 553, "description": "According television decide loss reflect nice.", "location": "SPB", "published": true, "genreId": 3}' 
+
+2026-05-13 22:09:21 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:21 [32mINFO[0m 	STATUS_CODE: [32m 201 [0m
+	DATA:
+{
+    "id": 48201,
+    "name": "Indeed challenge idea against.",
+    "price": 553,
+    "description": "According television decide loss reflect nice.",
+    "imageUrl": "https://dummyimage.com/819x697",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 3,
+    "createdAt": "2026-05-13T19:09:21.411Z",
+    "genre": {
+        "name": "Фантастика"
+    }
+}
+2026-05-13 22:09:21 [32mINFO[0m ================================================================================
+2026-05-13 22:09:21 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:21 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_patch_movie_single_field_rbac[admin_cannot_edit]  [0m
+curl -X PATCH 'https://api.dev-cinescope.coconutqa.ru/movies/48201 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM2YmE0NGNjLTMxMDMtNDk5MS05MTkyLTYyYzNkZGFhNmVmYyIsImVtYWlsIjoia2Vrb3c2OGllbjZAZ21haWwuY29tIiwicm9sZXMiOlsiQURNSU4iXSwidmVyaWZpZWQiOnRydWUsImlhdCI6MTc3ODY5OTM2MSwiZXhwIjoxNzc4NzAxMTYxfQ.z3oL7id_FQWY7z9HF0wg-qfnAvqknNBpOIUCYtDiqcc'\
+-H 'Content-Length: 14' \
+-d '{"price": 949}' 
+
+2026-05-13 22:09:21 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:21 [32mINFO[0m 	STATUS_CODE: [31m 403 [0m
+	DATA:
+{
+    "message": "Forbidden resource",
+    "error": "Forbidden",
+    "statusCode": 403
+}
+2026-05-13 22:09:21 [32mINFO[0m ================================================================================
+2026-05-13 22:09:21 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:21 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_patch_movie_single_field_rbac[admin_cannot_edit] (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48201 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:21 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:21 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48201,
+    "name": "Indeed challenge idea against.",
+    "price": 553,
+    "description": "According television decide loss reflect nice.",
+    "imageUrl": "https://dummyimage.com/819x697",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 3,
+    "createdAt": "2026-05-13T19:09:21.411Z",
+    "reviews": [],
+    "genre": {
+        "name": "Фантастика"
+    }
+}
+2026-05-13 22:09:21 [32mINFO[0m ================================================================================

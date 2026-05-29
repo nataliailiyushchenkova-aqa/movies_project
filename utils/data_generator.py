@@ -1,3 +1,4 @@
+import datetime
 import random
 import string
 import uuid
@@ -13,10 +14,7 @@ class DataGenerator:
     @staticmethod
     def generate_random_email():
         """Генерация рандомного email"""
-        random_string = "".join(
-            random.choices(string.ascii_lowercase + string.digits, k=8)
-        )
-        return f"kek{random_string}@gmail.com"
+        return f"aqa_{uuid.uuid4().hex}@gmail.com"
 
     @staticmethod
     def generate_random_name():
@@ -67,6 +65,22 @@ class DataGenerator:
     #     }
 
     @staticmethod
+    def generate_user_data() -> dict:
+        from uuid import uuid4
+
+        return {
+            "id": f"{uuid4()}",  # генерируем UUId
+            "email": DataGenerator.generate_random_email(),
+            "full_name": DataGenerator.generate_random_name(),
+            "password": DataGenerator.generate_random_password(),
+            "created_at": datetime.datetime.now(),
+            "updated_at": datetime.datetime.now(),
+            "verified": False,
+            "banned": False,
+            "roles": "{USER}",
+        }
+
+    @staticmethod
     def generate_movie_data(
         name: str = None,
         published: bool = True,
@@ -82,7 +96,7 @@ class DataGenerator:
         if name is None:
             name = faker.sentence(nb_words=4)
         if genre_id is None:
-            genre_id = random.randint(1, 4)
+            genre_id = random.randint(1, 3)
 
         if price is None:
             price = random.randint(1, 1000)
@@ -114,3 +128,7 @@ class DataGenerator:
     def generate_random_user_id():
         """Генерация рандомного id users"""
         return str(uuid.uuid4())
+
+    @staticmethod
+    def generate_random_movie_name(words_count: int = 3):
+        return faker.sentence(nb_words=words_count).rstrip(".")

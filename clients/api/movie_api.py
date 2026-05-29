@@ -1,11 +1,12 @@
 from typing import Optional, List, Dict, Union
 import requests
+import allure
 from requests import Response
 
 
 from custom_requester.custom_requester import CustomRequester
 from constants import MOVIE_URL, MOVIE_ENDPOINT
-from models.movies_models import MoviesQueryParams, MovieData
+from models.movies_models import MoviesQueryParams, MovieData, PatchMovieRequest
 from utils.data_generator import DataGenerator
 
 
@@ -14,9 +15,10 @@ class MoviesAPI(CustomRequester):
         super().__init__(session=session, base_url=MOVIE_URL)
         self.session = session
 
-    def get_movie(
-        self, params: Optional[MoviesQueryParams] = None, expected_status: int = 200
-    ):
+    @allure.step("Получить список фильмов")
+    def get_movies(
+        self, params: MoviesQueryParams | None = None, expected_status: int = 200
+    ) -> Response:
         """
         Получение списка фильмов.
         :param params: qwery параметры запроса
@@ -38,6 +40,7 @@ class MoviesAPI(CustomRequester):
             expected_status=expected_status,
         )
 
+    @allure.step("Получить фильм по id {movie_id}")
     def get_movie_id(self, movie_id: int, expected_status: int = 200):
         return self.send_request(
             method="GET",
@@ -45,11 +48,12 @@ class MoviesAPI(CustomRequester):
             expected_status=expected_status,
         )
 
+    @allure.step("Создать фильм")
     def create_movie(
         self,
         movie_data: Union[MovieData, dict, None] = None,
         expected_status: int = 201,
-    ):
+    ) -> Response:
         if movie_data is None:
             movie_data = DataGenerator.generate_movie_data()
         if isinstance(movie_data, MovieData):
@@ -64,10 +68,11 @@ class MoviesAPI(CustomRequester):
             expected_status=expected_status,
         )
 
+    @allure.step("Изменить фильм")
     def patch_movie(
         self,
         movie_id: int,
-        movie_data: Union[dict, MovieData],
+        movie_data: PatchMovieRequest,
         expected_status: int = 200,
     ) -> Response:
         """
@@ -77,19 +82,20 @@ class MoviesAPI(CustomRequester):
         :param expected_status: Ожидаемый статус код (по умолчанию 200)
         :return: Response object
         """
-        if isinstance(movie_data, MovieData):
-            payload = movie_data.model_dump(mode="json")
-        else:
-            payload = movie_data
+        payload = movie_data.model_dump(mode="json", exclude_none=True)
 
         return self.send_request(
             method="PATCH",
             endpoint=f"{MOVIE_ENDPOINT}/{movie_id}",
             data=payload,
             expected_status=expected_status,
+            exclude_none=True,
         )
 
-    def delete_movie(self, movie_id: int, expected_status: int = 200):
+    @allure.step("Удалить фильм")
+    def delete_movie(
+        self, movie_id: int, expected_status: int | None = 200
+    ) -> Response:
         return self.send_request(
             method="DELETE",
             endpoint=f"{MOVIE_ENDPOINT}/{movie_id}",
