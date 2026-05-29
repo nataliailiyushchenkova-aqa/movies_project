@@ -1,27 +1,82 @@
+import datetime
 from dataclasses import dataclass
-from typing import Optional, List
+from pydantic import BaseModel, Field, field_serializer
+from typing import Any, List
+from enums.location import Location
 
 
-def to_camel_case(snake_str: str):
-	parts = snake_str.split('_')
-	return parts[0] + ''.join(part.capitalize() for part in parts[1:])
+class MoviesQueryParams(BaseModel):
+    """Модель параметров для GET /movies"""
+
+    pageSize: int | None = None
+    page: int | None = None
+    minPrice: int | None = None
+    maxPrice: int | None = None
+    locations: list[Location] | None = None
+    published: bool | None = None
+    genreId: int | None = None
+    createdAt: str | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        """Преобразует в словарь исключая None значения"""
+        return self.model_dump(exclude_none=True)
 
 
-@dataclass
-class MoviesQweryParams:
-	"""модель параметров для GET /movies"""
-	page_size: Optional[int] = None
-	page: Optional[int] = None
-	min_price: Optional[int] = None
-	max_price: Optional[int] = None
-	locations: Optional[List[str]] = None
-	published: Optional[bool] = None
-	genre_id: Optional[int] = None
-	created_at: Optional[str] = None
+class MovieData(BaseModel):
+    # Модель body для POST/movies
+    name: str = Field(..., description="Название фильма")
+    imageUrl: str | None = Field(default="https://image.url", description="Ссылка")
+    price: int = Field(default=100, description="Цена фильма")
+    description: str = Field(..., description="Описание фильма")
+    location: Location = Field(default=Location.SPB, description="Локация фильма")
+    published: bool = Field(default=True, description="Опубликован ли фильм")
+    genreId: int = Field(default=1, description="ID жанра фильма")
 
-	def to_params(self) -> dict:
-		params = {}
-		for key, value in self.__dict__.items():
-			if value is not None:
-				params[to_camel_case(key)] = value
-		return params
+    @field_serializer("location")
+    def serialize_location(self, loc: Location) -> str:
+        return loc.value
+
+
+# Модель для жанра
+class GenreSchema(BaseModel):
+    name: str
+
+
+# Модель для фильма
+class MovieSchema(BaseModel):
+    id: int
+    name: str
+    price: int
+    description: str
+    imageUrl: str | None = None
+    location: Location
+    published: bool
+    genreId: int
+    genre: GenreSchema
+    createdAt: datetime.datetime
+    rating: int | None = None
+
+
+class MovieFilterInfo(BaseModel):
+    id: int
+    published: bool
+    price: int
+
+
+# Модель ответа
+class MoviesResponseSchema(BaseModel):
+    movies: list[MovieSchema]
+    count: int
+    page: int
+    pageSize: int
+    pageCount: int
+
+
+class PatchMovieRequest(BaseModel):
+    name: str | None = None
+    imageUrl: str | None = None
+    price: int | None = None
+    description: str | None = None
+    location: Location | None = None
+    published: bool | None = None
+    genreId: int | None = None

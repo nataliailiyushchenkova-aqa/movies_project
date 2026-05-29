@@ -1,0 +1,1284 @@
+2026-05-13 22:09:25 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:25 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name  [0m
+curl -X POST 'https://api.dev-cinescope.coconutqa.ru/movies \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 186' \
+-d '{"imageUrl": "https://dummyimage.com/360x340", "price": 156, "description": "Station really field break event station federal peace.", "location": "MSK", "published": true, "genreId": 3}' 
+
+2026-05-13 22:09:25 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:25 [32mINFO[0m 	STATUS_CODE: [31m 400 [0m
+	DATA:
+{
+    "message": [
+        "name should not be empty",
+        "Поле name должно быть строкой"
+    ],
+    "error": "Bad Request",
+    "statusCode": 400
+}
+2026-05-13 22:09:25 [32mINFO[0m ================================================================================
+2026-05-13 22:09:25 [32mINFO[0m ROLLBACK
+2026-05-13 22:09:25 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:25 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48191 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:25 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:25 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48191,
+    "name": "Enough during camera save police.",
+    "price": 0,
+    "description": "Weight pass protect economic participant even head.",
+    "imageUrl": "https://placekitten.com/308/589",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:13.416Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:25 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:25 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:25 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48192 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:25 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:25 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48192,
+    "name": "Evening dog begin above.",
+    "price": 100,
+    "description": "Enough soon mother old situation. Ever far suddenly stock generation town.",
+    "imageUrl": "https://picsum.photos/648/46",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 2,
+    "createdAt": "2026-05-13T19:09:13.517Z",
+    "reviews": [],
+    "genre": {
+        "name": "Комедия"
+    }
+}
+2026-05-13 22:09:25 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:25 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:25 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48193 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:25 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:25 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48193,
+    "name": "Entire peace guess.",
+    "price": 357,
+    "description": "Teacher push local truth team both arrive everyone.",
+    "imageUrl": "https://picsum.photos/827/625",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:13.586Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:25 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48194 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48194,
+    "name": "At woman control perform.",
+    "price": 999,
+    "description": "Race its tough office note travel. Remember mean outside sense.",
+    "imageUrl": "https://placekitten.com/510/257",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 3,
+    "createdAt": "2026-05-13T19:09:13.675Z",
+    "reviews": [],
+    "genre": {
+        "name": "Фантастика"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48195 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48195,
+    "name": "Their finish feel rule.",
+    "price": 1000,
+    "description": "Economic treat treat environment. Middle identify teacher send.",
+    "imageUrl": "https://picsum.photos/156/107",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:13.916Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48196 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48196,
+    "name": "Business next score.",
+    "price": 1001,
+    "description": "Phone bag scientist series place response figure safe.",
+    "imageUrl": "https://placekitten.com/856/795",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:14.011Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48159 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48159,
+    "name": "Cell right strategy agree seat.",
+    "price": 100,
+    "description": "Without cell huge author price upon. Drive here involve else.",
+    "imageUrl": "https://picsum.photos/492/564",
+    "location": "SPB",
+    "published": false,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:10.559Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48160 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48160,
+    "name": "Experience figure ready despite.",
+    "price": 130,
+    "description": "Surface article bed option catch few. Left drop be fill who.",
+    "imageUrl": "https://placekitten.com/30/576",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:10.655Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48161 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48161,
+    "name": "Company public order history.",
+    "price": 160,
+    "description": "Stay dog both leader young poor.",
+    "imageUrl": "https://dummyimage.com/102x619",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:10.715Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48162 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48162,
+    "name": "Office itself weight big.",
+    "price": 190,
+    "description": "Effect music hope loss see report. Choice number plant people.",
+    "imageUrl": "https://placekitten.com/292/364",
+    "location": "SPB",
+    "published": false,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:10.788Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48163 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48163,
+    "name": "Event discover method.",
+    "price": 220,
+    "description": "Machine mention property. Church shoulder enjoy good.",
+    "imageUrl": "https://dummyimage.com/376x455",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:10.862Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48164 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48164,
+    "name": "Already break over guess study.",
+    "price": 250,
+    "description": "Art writer decide. Ago enter oil charge raise order mind.",
+    "imageUrl": "https://placekitten.com/1019/193",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 2,
+    "createdAt": "2026-05-13T19:09:10.930Z",
+    "reviews": [],
+    "genre": {
+        "name": "Комедия"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48165 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48165,
+    "name": "Minute group door machine.",
+    "price": 280,
+    "description": "Oil certainly near. Federal these yet little.",
+    "imageUrl": "https://picsum.photos/589/443",
+    "location": "MSK",
+    "published": false,
+    "rating": 0,
+    "genreId": 2,
+    "createdAt": "2026-05-13T19:09:11.002Z",
+    "reviews": [],
+    "genre": {
+        "name": "Комедия"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48166 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48166,
+    "name": "Myself cell economy must.",
+    "price": 310,
+    "description": "Ok road much weight as claim nice. State air behavior. Do we know.",
+    "imageUrl": "https://picsum.photos/701/665",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 2,
+    "createdAt": "2026-05-13T19:09:11.076Z",
+    "reviews": [],
+    "genre": {
+        "name": "Комедия"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48167 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48167,
+    "name": "Bring us safe far think.",
+    "price": 340,
+    "description": "Wife hold shoulder which. Same chair moment beyond.",
+    "imageUrl": "https://dummyimage.com/168x27",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 3,
+    "createdAt": "2026-05-13T19:09:11.137Z",
+    "reviews": [],
+    "genre": {
+        "name": "Фантастика"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48168 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48168,
+    "name": "Behind candidate try.",
+    "price": 370,
+    "description": "Bring democratic economic southern dream generation. Either within analysis.",
+    "imageUrl": "https://dummyimage.com/352x84",
+    "location": "MSK",
+    "published": false,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:11.213Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:26 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:26 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48169 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:26 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:26 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48169,
+    "name": "And drop sense memory statement.",
+    "price": 400,
+    "description": "Most paper school amount debate interest data.",
+    "imageUrl": "https://picsum.photos/789/348",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:11.277Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:26 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48170 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48170,
+    "name": "Describe end health.",
+    "price": 430,
+    "description": "Common since office Mr up individual. Decade theory outside.",
+    "imageUrl": "https://picsum.photos/205/728",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:11.365Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48171 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48171,
+    "name": "Dinner short.",
+    "price": 460,
+    "description": "Kind side remember audience.",
+    "imageUrl": "https://dummyimage.com/508x966",
+    "location": "MSK",
+    "published": false,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:11.424Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48172 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48172,
+    "name": "Build cell how.",
+    "price": 490,
+    "description": "Who character collection participant. He note and hotel huge program woman.",
+    "imageUrl": "https://picsum.photos/629/904",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 2,
+    "createdAt": "2026-05-13T19:09:11.507Z",
+    "reviews": [],
+    "genre": {
+        "name": "Комедия"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48173 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48173,
+    "name": "Available kitchen.",
+    "price": 520,
+    "description": "Class effect thus meet. Character east forward able. Member realize white bag.",
+    "imageUrl": "https://placekitten.com/2/389",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:11.574Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48174 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48174,
+    "name": "Away give enjoy science.",
+    "price": 550,
+    "description": "Leg treatment radio stay. Thought expect west condition concern probably admit.",
+    "imageUrl": "https://placekitten.com/537/804",
+    "location": "MSK",
+    "published": false,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:11.647Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48175 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48175,
+    "name": "Such rather.",
+    "price": 580,
+    "description": "Person late commercial peace. Strong management authority expect.",
+    "imageUrl": "https://dummyimage.com/105x576",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:11.720Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48176 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48176,
+    "name": "Network start.",
+    "price": 610,
+    "description": "Start small case soldier memory play. Camera top data note start on.",
+    "imageUrl": "https://placekitten.com/255/94",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:11.807Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48177 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48177,
+    "name": "Reality respond.",
+    "price": 640,
+    "description": "Reduce parent cold recognize yeah ever best.",
+    "imageUrl": "https://placekitten.com/276/448",
+    "location": "SPB",
+    "published": false,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:11.891Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48178 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48178,
+    "name": "Happen church short assume system.",
+    "price": 670,
+    "description": "Interesting system level win business news almost.",
+    "imageUrl": "https://placekitten.com/91/287",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:11.976Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48179 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48179,
+    "name": "Other area resource.",
+    "price": 700,
+    "description": "Then perhaps born talk discover. Book front good professor phone.",
+    "imageUrl": "https://dummyimage.com/34x322",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 2,
+    "createdAt": "2026-05-13T19:09:12.041Z",
+    "reviews": [],
+    "genre": {
+        "name": "Комедия"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48180 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48180,
+    "name": "Follow other sound contain Mrs.",
+    "price": 730,
+    "description": "Suffer control range will simple image red. Course amount child as.",
+    "imageUrl": "https://dummyimage.com/513x534",
+    "location": "SPB",
+    "published": false,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:12.112Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48181 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48181,
+    "name": "Body memory minute break.",
+    "price": 760,
+    "description": "And line wear after fact want all. Those cup detail site.",
+    "imageUrl": "https://placekitten.com/109/29",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:12.192Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:27 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:27 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48182 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:27 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:27 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48182,
+    "name": "Reach person almost film look.",
+    "price": 790,
+    "description": "Risk us yourself middle career. Bag while dog most. Evening day different deep.",
+    "imageUrl": "https://placekitten.com/155/271",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:12.267Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:27 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:28 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:28 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48183 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:28 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:28 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48183,
+    "name": "Responsibility friend.",
+    "price": 820,
+    "description": "Entire back particular share now enough. Matter way player kind personal young.",
+    "imageUrl": "https://picsum.photos/551/679",
+    "location": "SPB",
+    "published": false,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:12.339Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:28 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:28 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:28 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48184 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:28 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:28 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48184,
+    "name": "Book deal.",
+    "price": 850,
+    "description": "Want clearly action of. New network light another. Give law building usually.",
+    "imageUrl": "https://picsum.photos/119/726",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 3,
+    "createdAt": "2026-05-13T19:09:12.415Z",
+    "reviews": [],
+    "genre": {
+        "name": "Фантастика"
+    }
+}
+2026-05-13 22:09:28 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:28 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:28 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48185 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:28 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:28 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48185,
+    "name": "Little future walk event kind.",
+    "price": 880,
+    "description": "View watch something management service information have.",
+    "imageUrl": "https://placekitten.com/304/128",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:12.494Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:28 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:28 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:28 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48186 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:28 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:28 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48186,
+    "name": "Might enjoy system.",
+    "price": 910,
+    "description": "Move radio pass method. Southern boy several next until.",
+    "imageUrl": "https://picsum.photos/3/942",
+    "location": "MSK",
+    "published": false,
+    "rating": 0,
+    "genreId": 3,
+    "createdAt": "2026-05-13T19:09:12.606Z",
+    "reviews": [],
+    "genre": {
+        "name": "Фантастика"
+    }
+}
+2026-05-13 22:09:28 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:28 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:28 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48187 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:28 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:28 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48187,
+    "name": "Military success likely.",
+    "price": 940,
+    "description": "Guess six rich. Modern figure something short owner. And staff happy meeting.",
+    "imageUrl": "https://placekitten.com/301/247",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 1,
+    "createdAt": "2026-05-13T19:09:12.690Z",
+    "reviews": [],
+    "genre": {
+        "name": "Драма"
+    }
+}
+2026-05-13 22:09:28 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:28 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:28 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48188 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:28 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:28 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48188,
+    "name": "Unit memory choose approach.",
+    "price": 970,
+    "description": "Box case prove. Task hand lose unit. Century couple Mrs want.",
+    "imageUrl": "https://dummyimage.com/226x381",
+    "location": "SPB",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:12.807Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:28 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:28 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:28 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestNegativeMovieAPI::test_negative_post_movie_no_name (teardown) [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48189 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:28 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:28 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48189,
+    "name": "Speech expert.",
+    "price": 1000,
+    "description": "Simply step keep she control my describe leg.",
+    "imageUrl": "https://placekitten.com/485/99",
+    "location": "SPB",
+    "published": false,
+    "rating": 0,
+    "genreId": 3,
+    "createdAt": "2026-05-13T19:09:12.892Z",
+    "reviews": [],
+    "genre": {
+        "name": "Фантастика"
+    }
+}
+2026-05-13 22:09:28 [32mINFO[0m ================================================================================

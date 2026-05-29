@@ -1,0 +1,100 @@
+2026-05-13 22:09:13 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:13 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_create_and_check_movie  [0m
+curl -X POST 'https://api.dev-cinescope.coconutqa.ru/movies \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 236' \
+-d '{"name": "Miss hotel free.", "imageUrl": "https://dummyimage.com/977x466", "price": 335, "description": "Record those course. Beautiful wait never occur. Avoid phone western account.", "location": "MSK", "published": true, "genreId": 4}' 
+
+2026-05-13 22:09:13 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:13 [32mINFO[0m 	STATUS_CODE: [32m 201 [0m
+	DATA:
+{
+    "id": 48190,
+    "name": "Miss hotel free.",
+    "price": 335,
+    "description": "Record those course. Beautiful wait never occur. Avoid phone western account.",
+    "imageUrl": "https://dummyimage.com/977x466",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:13.079Z",
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:13 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:13 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:13 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_create_and_check_movie  [0m
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru/movies/48190 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ' \
+
+2026-05-13 22:09:13 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:13 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48190,
+    "name": "Miss hotel free.",
+    "price": 335,
+    "description": "Record those course. Beautiful wait never occur. Avoid phone western account.",
+    "imageUrl": "https://dummyimage.com/977x466",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:13.079Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:13 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:13 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:13 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_create_and_check_movie  [0m
+curl -X DELETE 'https://api.dev-cinescope.coconutqa.ru/movies/48190 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:13 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:13 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "id": 48190,
+    "name": "Miss hotel free.",
+    "price": 335,
+    "description": "Record those course. Beautiful wait never occur. Avoid phone western account.",
+    "imageUrl": "https://dummyimage.com/977x466",
+    "location": "MSK",
+    "published": true,
+    "rating": 0,
+    "genreId": 4,
+    "createdAt": "2026-05-13T19:09:13.079Z",
+    "reviews": [],
+    "genre": {
+        "name": "Криминал"
+    }
+}
+2026-05-13 22:09:13 [32mINFO[0m ================================================================================

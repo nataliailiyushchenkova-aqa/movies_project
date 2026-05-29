@@ -1,0 +1,174 @@
+2026-05-13 22:09:10 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:10 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_get_movies_filtered[genre_filter_1]  [0m
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru/movies?genreId=1 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ' \
+
+2026-05-13 22:09:10 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:10 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "movies": [
+        {
+            "id": 463,
+            "name": "abcdef",
+            "description": "Movie description",
+            "genreId": 1,
+            "imageUrl": "https://image.url",
+            "price": 100,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-20T18:08:45.512Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 895,
+            "name": "Распределённый и максимальный доступ",
+            "description": "Запустить секунда космос ярко ярко. Вообще ботинок легко тяжелый плясать посидеть. Аж привлекать магазин ломать. Слать угол столетие поговорить головка призыв устройство.",
+            "genreId": 1,
+            "imageUrl": "http://www.npo.com/",
+            "price": 222,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-23T12:21:37.272Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 899,
+            "name": "Адаптивное и пошаговое решение",
+            "description": "О прощение торговля исполнять поговорить посвятить. Триста дошлый низкий виднеться рот плод.\nПосидеть построить вчера ягода шлем. Способ страсть нож монета инфекция достоинство совещание упорно.",
+            "genreId": 1,
+            "imageUrl": "http://www.npo.com/",
+            "price": 139,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-23T12:45:18.502Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 903,
+            "name": "Gun still thousand president.",
+            "description": "These cover who available month. Just hit political him yourself.\nCrime political building able may develop matter choice. Set tonight since.",
+            "genreId": 1,
+            "imageUrl": "https://dummyimage.com/435x974",
+            "price": 901,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2025-05-23T12:45:25.814Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 917,
+            "name": "Сетевой и пошаговый вызов",
+            "description": "Протягивать сверкать цель грустный. Монета дыхание один пробовать витрина обида. Помолчать зачем командир эпоха.",
+            "genreId": 1,
+            "imageUrl": "http://www.ip.edu/",
+            "price": 192,
+            "rating": 5,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-23T13:59:21.801Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 989,
+            "name": "Фильм zpdqhfnzvi",
+            "description": "Описание jeuwcftgqokvceeftnomvavibqpeqh",
+            "genreId": 1,
+            "imageUrl": "https://www.montgomery.com/list/category/appsearch.html",
+            "price": 566,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2025-05-23T20:17:24.045Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 1039,
+            "name": "Название фильма2",
+            "description": "Mind blue around though each into. Same health trouble which woman suddenly. No natural Mr week.\nWould morning her else contain building worker do. About war medical me reveal represent.",
+            "genreId": 1,
+            "imageUrl": "https://image.url",
+            "price": 100,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-26T09:13:30.860Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 1042,
+            "name": "Тайна Port Cindy",
+            "description": "Описание фильма",
+            "genreId": 1,
+            "imageUrl": "https://image.url",
+            "price": 553,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-26T09:21:05.994Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 1043,
+            "name": "Movie name1",
+            "description": "Movie description",
+            "genreId": 1,
+            "imageUrl": "https://image.url",
+            "price": 100,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-26T09:29:27.066Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 1044,
+            "name": "Тайна Glennhaven",
+            "description": "Описание фильма",
+            "genreId": 1,
+            "imageUrl": "https://image.url",
+            "price": 354,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2025-05-26T09:29:42.492Z",
+            "genre": {
+                "name": "Драма"
+            }
+        }
+    ],
+    "count": 4493,
+    "page": 1,
+    "pageSize": 10,
+    "pageCount": 450
+}
+2026-05-13 22:09:10 [32mINFO[0m ================================================================================

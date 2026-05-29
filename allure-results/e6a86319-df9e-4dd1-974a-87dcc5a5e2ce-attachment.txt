@@ -1,0 +1,103 @@
+2026-05-13 22:09:14 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:14 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_post_movie_rbac[user_cannot_create] (setup) [0m
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Cookie: refresh_token=fa8129a9-e091-41c7-b908-069a19954ee7'\
+-H 'Content-Length: 176' \
+-d '{"email": "kek4l6qdo79@gmail.com", "fullName": "Derrick Norris", "password": "S1fDj5MiUM", "passwordRepeat": "S1fDj5MiUM", "roles": ["USER"], "banned": false, "verified": true}' 
+
+2026-05-13 22:09:14 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:14 [32mINFO[0m 	STATUS_CODE: [32m 201 [0m
+	DATA:
+{
+    "id": "73d00092-40df-4662-94a2-aeb467e7fe14",
+    "email": "kek4l6qdo79@gmail.com",
+    "fullName": "Derrick Norris",
+    "verified": true,
+    "banned": false,
+    "roles": [
+        "USER"
+    ],
+    "createdAt": "2026-05-13T19:09:14.919Z"
+}
+2026-05-13 22:09:14 [32mINFO[0m ================================================================================
+
+2026-05-13 22:09:15 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:15 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_post_movie_rbac[user_cannot_create] (setup) [0m
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'Content-Length: 60' \
+-d '{"email": "kek4l6qdo79@gmail.com", "password": "S1fDj5MiUM"}' 
+
+2026-05-13 22:09:15 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:15 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "user": {
+        "id": "73d00092-40df-4662-94a2-aeb467e7fe14",
+        "email": "kek4l6qdo79@gmail.com",
+        "fullName": "Derrick Norris",
+        "roles": [
+            "USER"
+        ]
+    },
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczZDAwMDkyLTQwZGYtNDY2Mi05NGEyLWFlYjQ2N2U3ZmUxNCIsImVtYWlsIjoia2VrNGw2cWRvNzlAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzU1LCJleHAiOjE3Nzg3MDExNTV9.S_m66odowY5bC0vMUevLT9W1f5HbNtvmZwMFmjEMD7w",
+    "refreshToken": "a90f1ed9-29b2-4761-af04-235fc5a4f8dc",
+    "expiresIn": 1778701155549
+}
+2026-05-13 22:09:15 [32mINFO[0m ================================================================================
+2026-05-13 22:09:15 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:15 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_post_movie_rbac[user_cannot_create]  [0m
+curl -X POST 'https://api.dev-cinescope.coconutqa.ru/movies \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczZDAwMDkyLTQwZGYtNDY2Mi05NGEyLWFlYjQ2N2U3ZmUxNCIsImVtYWlsIjoia2VrNGw2cWRvNzlAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzU1LCJleHAiOjE3Nzg3MDExNTV9.S_m66odowY5bC0vMUevLT9W1f5HbNtvmZwMFmjEMD7w'\
+-H 'Content-Length: 220' \
+-d '{"name": "Wear mother law drive recent.", "imageUrl": "https://dummyimage.com/740x417", "price": 865, "description": "Be option sort relationship task bag throughout.", "location": "MSK", "published": true, "genreId": 1}' 
+
+2026-05-13 22:09:15 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:15 [32mINFO[0m 	STATUS_CODE: [31m 403 [0m
+	DATA:
+{
+    "message": "Forbidden resource",
+    "error": "Forbidden",
+    "statusCode": 403
+}
+2026-05-13 22:09:15 [32mINFO[0m ================================================================================
+2026-05-13 22:09:15 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:15 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_post_movie_rbac[user_cannot_create] (teardown) [0m
+curl -X DELETE 'https://auth.dev-cinescope.coconutqa.ru/user/73d00092-40df-4662-94a2-aeb467e7fe14 \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json'\
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNDk2NGVjLTRkNmEtNDc4OS04MzlmLTc1Nzk3MTQxZTczZSIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzc4Njk5MzQzLCJleHAiOjE3Nzg3MDExNDN9.sZZnQ_7AytD0gXQxhALtArfn8bsfhgabQ2LGlBscjhQ'\
+-H 'Cookie: refresh_token=fa8129a9-e091-41c7-b908-069a19954ee7'\
+-H 'Content-Length: 0' \
+
+2026-05-13 22:09:15 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:15 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+
+2026-05-13 22:09:15 [32mINFO[0m ================================================================================

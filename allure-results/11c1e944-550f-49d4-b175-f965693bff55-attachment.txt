@@ -1,0 +1,323 @@
+2026-05-13 22:09:14 [32mINFO[0m 
+========================================) REQUEST ========================================)
+2026-05-13 22:09:14 [32mINFO[0m [32m pytest tests/api/test_movies.py::TestMovieApi::test_get_movies_sort_by_created_at[get_movie_sort_desc]  [0m
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru/movies?pageSize=20&createdAt=desc \
+'-H 'User-Agent: python-requests/2.32.5'\
+-H 'Accept-Encoding: gzip, deflate'\
+-H 'Accept: application/json'\
+-H 'Connection: keep-alive'\
+-H 'Content-Type: application/json' \
+
+2026-05-13 22:09:14 [32mINFO[0m 
+======================================== RESPONSE ========================================
+2026-05-13 22:09:14 [32mINFO[0m 	STATUS_CODE: [32m 200 [0m
+	DATA:
+{
+    "movies": [
+        {
+            "id": 48195,
+            "name": "Their finish feel rule.",
+            "description": "Economic treat treat environment. Middle identify teacher send.",
+            "genreId": 4,
+            "imageUrl": "https://picsum.photos/156/107",
+            "price": 1000,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:13.916Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 48194,
+            "name": "At woman control perform.",
+            "description": "Race its tough office note travel. Remember mean outside sense.",
+            "genreId": 3,
+            "imageUrl": "https://placekitten.com/510/257",
+            "price": 999,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:13.675Z",
+            "genre": {
+                "name": "Фантастика"
+            }
+        },
+        {
+            "id": 48193,
+            "name": "Entire peace guess.",
+            "description": "Teacher push local truth team both arrive everyone.",
+            "genreId": 4,
+            "imageUrl": "https://picsum.photos/827/625",
+            "price": 357,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:13.586Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 48192,
+            "name": "Evening dog begin above.",
+            "description": "Enough soon mother old situation. Ever far suddenly stock generation town.",
+            "genreId": 2,
+            "imageUrl": "https://picsum.photos/648/46",
+            "price": 100,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:13.517Z",
+            "genre": {
+                "name": "Комедия"
+            }
+        },
+        {
+            "id": 48188,
+            "name": "Unit memory choose approach.",
+            "description": "Box case prove. Task hand lose unit. Century couple Mrs want.",
+            "genreId": 4,
+            "imageUrl": "https://dummyimage.com/226x381",
+            "price": 970,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:12.807Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 48187,
+            "name": "Military success likely.",
+            "description": "Guess six rich. Modern figure something short owner. And staff happy meeting.",
+            "genreId": 1,
+            "imageUrl": "https://placekitten.com/301/247",
+            "price": 940,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:12.690Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 48185,
+            "name": "Little future walk event kind.",
+            "description": "View watch something management service information have.",
+            "genreId": 1,
+            "imageUrl": "https://placekitten.com/304/128",
+            "price": 880,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:12.494Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 48184,
+            "name": "Book deal.",
+            "description": "Want clearly action of. New network light another. Give law building usually.",
+            "genreId": 3,
+            "imageUrl": "https://picsum.photos/119/726",
+            "price": 850,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:12.415Z",
+            "genre": {
+                "name": "Фантастика"
+            }
+        },
+        {
+            "id": 48182,
+            "name": "Reach person almost film look.",
+            "description": "Risk us yourself middle career. Bag while dog most. Evening day different deep.",
+            "genreId": 4,
+            "imageUrl": "https://placekitten.com/155/271",
+            "price": 790,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:12.267Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 48181,
+            "name": "Body memory minute break.",
+            "description": "And line wear after fact want all. Those cup detail site.",
+            "genreId": 4,
+            "imageUrl": "https://placekitten.com/109/29",
+            "price": 760,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:12.192Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 48179,
+            "name": "Other area resource.",
+            "description": "Then perhaps born talk discover. Book front good professor phone.",
+            "genreId": 2,
+            "imageUrl": "https://dummyimage.com/34x322",
+            "price": 700,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:12.041Z",
+            "genre": {
+                "name": "Комедия"
+            }
+        },
+        {
+            "id": 48178,
+            "name": "Happen church short assume system.",
+            "description": "Interesting system level win business news almost.",
+            "genreId": 4,
+            "imageUrl": "https://placekitten.com/91/287",
+            "price": 670,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:11.976Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 48176,
+            "name": "Network start.",
+            "description": "Start small case soldier memory play. Camera top data note start on.",
+            "genreId": 1,
+            "imageUrl": "https://placekitten.com/255/94",
+            "price": 610,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:11.807Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 48175,
+            "name": "Such rather.",
+            "description": "Person late commercial peace. Strong management authority expect.",
+            "genreId": 4,
+            "imageUrl": "https://dummyimage.com/105x576",
+            "price": 580,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:11.720Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 48173,
+            "name": "Available kitchen.",
+            "description": "Class effect thus meet. Character east forward able. Member realize white bag.",
+            "genreId": 4,
+            "imageUrl": "https://placekitten.com/2/389",
+            "price": 520,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:11.574Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 48172,
+            "name": "Build cell how.",
+            "description": "Who character collection participant. He note and hotel huge program woman.",
+            "genreId": 2,
+            "imageUrl": "https://picsum.photos/629/904",
+            "price": 490,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:11.507Z",
+            "genre": {
+                "name": "Комедия"
+            }
+        },
+        {
+            "id": 48170,
+            "name": "Describe end health.",
+            "description": "Common since office Mr up individual. Decade theory outside.",
+            "genreId": 1,
+            "imageUrl": "https://picsum.photos/205/728",
+            "price": 430,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:11.365Z",
+            "genre": {
+                "name": "Драма"
+            }
+        },
+        {
+            "id": 48169,
+            "name": "And drop sense memory statement.",
+            "description": "Most paper school amount debate interest data.",
+            "genreId": 4,
+            "imageUrl": "https://picsum.photos/789/348",
+            "price": 400,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:11.277Z",
+            "genre": {
+                "name": "Криминал"
+            }
+        },
+        {
+            "id": 48167,
+            "name": "Bring us safe far think.",
+            "description": "Wife hold shoulder which. Same chair moment beyond.",
+            "genreId": 3,
+            "imageUrl": "https://dummyimage.com/168x27",
+            "price": 340,
+            "rating": 0,
+            "location": "MSK",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:11.137Z",
+            "genre": {
+                "name": "Фантастика"
+            }
+        },
+        {
+            "id": 48166,
+            "name": "Myself cell economy must.",
+            "description": "Ok road much weight as claim nice. State air behavior. Do we know.",
+            "genreId": 2,
+            "imageUrl": "https://picsum.photos/701/665",
+            "price": 310,
+            "rating": 0,
+            "location": "SPB",
+            "published": true,
+            "createdAt": "2026-05-13T19:09:11.076Z",
+            "genre": {
+                "name": "Комедия"
+            }
+        }
+    ],
+    "count": 8732,
+    "page": 1,
+    "pageSize": 20,
+    "pageCount": 437
+}
+2026-05-13 22:09:14 [32mINFO[0m ================================================================================
