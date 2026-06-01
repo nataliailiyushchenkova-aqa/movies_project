@@ -1,37 +1,42 @@
 from collections.abc import Callable
+import allure
 from typing import Any
+from pytest_check import check
 from models.movies_models import MovieSchema, MovieData
 from db_models.movie import MovieDBModel
 from pydantic import BaseModel
 
 
+@allure.step("Проверить соответствие данных фильма в ответе")
 def assert_movie_response(actual: MovieSchema, expected: MovieData):
-    assert actual.id > 0
-    assert actual.name == expected.name
-    assert actual.price == expected.price
-    assert actual.description == expected.description
-    assert actual.imageUrl == expected.imageUrl
-    assert actual.location == expected.location
-    assert actual.published == expected.published
-    assert actual.genreId == expected.genreId
+    check.greater(actual.id, 0)
+    check.equal(actual.name, expected.name)
+    check.equal(actual.price, expected.price)
+    check.equal(actual.description, expected.description)
+    check.equal(actual.imageUrl, expected.imageUrl)
+    check.equal(actual.location, expected.location)
+    check.equal(actual.published, expected.published)
+    check.equal(actual.genreId, expected.genreId)
 
-    assert actual.createdAt is not None
-    assert isinstance(actual.rating, int)
+    check.is_not_none(actual.createdAt)
+    check.is_true(isinstance(actual.rating, int))
 
-    assert actual.genre.name
+    check.is_not_none(actual.genre.name)
 
 
+@allure.step("Проверить параметры фильма в БД")
 def assert_movie_in_db(actual: MovieDBModel, expected: MovieData):
-    assert actual.id is not None
-    assert actual.name == expected.name
-    assert actual.price == float(expected.price)
-    assert actual.image_url == expected.imageUrl
-    assert actual.location == expected.location.value
-    assert actual.published == expected.published
-    assert actual.genre_id == expected.genreId
-    assert actual.created_at is not None
+    check.is_not_none(actual.id)
+    check.equal(actual.name, expected.name)
+    check.equal(actual.price, float(expected.price))
+    check.equal(actual.image_url, expected.imageUrl)
+    check.equal(actual.location, expected.location.value)
+    check.equal(actual.published, expected.published)
+    check.equal(actual.genre_id, expected.genreId)
+    check.is_not_none(actual.created_at)
 
 
+@allure.step("Проверить корректность частичного обновления фильма")
 def assert_partial_movie_update(
     actual: MovieSchema, original: MovieSchema, updated_fields: dict | BaseModel
 ):
@@ -44,10 +49,14 @@ def assert_partial_movie_update(
         updated_fields_data = updated_fields
 
     for field_name, expected_value in updated_fields_data.items():
-        assert actual_data[field_name] == expected_value, (
-            f"Поле {field_name} не обновилось."
-            f" ОР: {expected_value},"
-            f" ФР: {actual_data[field_name]}"
+        check.equal(
+            actual_data[field_name],
+            expected_value,
+            (
+                f"Поле {field_name} не обновилось."
+                f" ОР: {expected_value},"
+                f" ФР: {actual_data[field_name]}"
+            ),
         )
 
     unchanged_fields = set(original_data.keys()) - set(updated_fields_data.keys())
@@ -57,10 +66,14 @@ def assert_partial_movie_update(
     unchanged_fields -= ignored_fields
 
     for field_name in unchanged_fields:
-        assert actual_data[field_name] == original_data[field_name], (
-            f"Поле '{field_name}' незапланированно изменено. "
-            f"ОР: {original_data[field_name]}, "
-            f"ФР: {actual_data[field_name]}"
+        check.equal(
+            actual_data[field_name],
+            original_data[field_name],
+            (
+                f"Поле '{field_name}' незапланированно изменено. "
+                f"ОР: {original_data[field_name]}, "
+                f"ФР: {actual_data[field_name]}"
+            ),
         )
 
 
@@ -78,29 +91,32 @@ def assert_movies_sorted_by_created_at(
 def assert_movie_price_filter(
     movie: MovieSchema, filter_params: dict[str, Any]
 ) -> None:
-    assert filter_params["minPrice"] <= movie.price <= filter_params["maxPrice"], (
-        f"Цена {movie.price} не входит в диапазон "
-        f"[{filter_params['minPrice']}, "
-        f"{filter_params['maxPrice']}]"
-    )
+    with allure.step(f"Проверка фильтрации цены фильма {movie.id}"):
+        assert filter_params["minPrice"] <= movie.price <= filter_params["maxPrice"], (
+            f"Цена {movie.price} не входит в диапазон "
+            f"[{filter_params['minPrice']}, "
+            f"{filter_params['maxPrice']}]"
+        )
 
 
 def assert_movie_location_filter(
     movie: MovieSchema, filter_params: dict[str, Any]
 ) -> None:
-    assert movie.location.value == filter_params["locations"], (
-        f"Локация {movie.location.value} "
-        f"не совпадает с "
-        f"{filter_params['locations']}"
-    )
+    with allure.step(f"Проверка фильтрации локации фильма {movie.id}"):
+        assert movie.location.value == filter_params["locations"], (
+            f"Локация {movie.location.value} "
+            f"не совпадает с "
+            f"{filter_params['locations']}"
+        )
 
 
 def assert_movie_genre_filter(
     movie: MovieSchema, filter_params: dict[str, Any]
 ) -> None:
-    assert movie.genreId == filter_params["genreId"], (
-        f"Жанр {movie.genreId} " f"не совпадает с " f"{filter_params['genreId']}"
-    )
+    with allure.step(f"Проверка фильтрации жанра фильма {movie.id}"):
+        assert movie.genreId == filter_params["genreId"], (
+            f"Жанр {movie.genreId} " f"не совпадает с " f"{filter_params['genreId']}"
+        )
 
 
 FILTER_ASSERTIONS: dict[

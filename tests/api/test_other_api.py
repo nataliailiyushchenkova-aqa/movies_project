@@ -58,14 +58,14 @@ class TestAccountTransactionTemplate:
     @allure.label("qa_name", "N.I.")
     @allure.title("Тест успешного перевода средств между счетами 200 ед.")
     def test_accounts_transaction(self, db_session: Session, accounts_factory):
-        # ==========================================================Подготовка к тесту
-        stan, bob = accounts_factory()
-        # =============================================================Тест
-        with allure.step("Проверяем начальные балансы"):
+        with allure.step("Подготовить тестовые акаунты"):
+            stan, bob = accounts_factory()
+
+        with allure.step("Проверить начальные балансы"):
             assert stan.balance == 1000
             assert bob.balance == 500
 
-        with allure.step("Выполняем перевод 200 ед. от stan к bob"):
+        with allure.step("Выполнить перевод 200 ед. от stan к bob"):
             transfer_money(
                 db_session, from_account=stan.user, to_account=bob.user, amount=200
             )
@@ -73,7 +73,7 @@ class TestAccountTransactionTemplate:
         db_session.refresh(stan)
         db_session.refresh(bob)
 
-        with allure.step("Проверяем изменение баланса"):
+        with allure.step("Проверить изменение баланса"):
             assert stan.balance == 800
             assert bob.balance == 700
 
@@ -93,10 +93,10 @@ class TestAccountTransactionTemplate:
     def test_account_negative_transaction_not_enough_money(
         self, db_session: Session, accounts_factory
     ):
-        # ============================================Подготовка к тесту
-        stan, bob = accounts_factory(stan_balance=100, bob_balance=500)
-        initial_stan_balance = stan.balance
-        initial_bob_balance = bob.balance
+        with allure.step("Подготовить тестовые акаунты"):
+            stan, bob = accounts_factory(stan_balance=100, bob_balance=500)
+            initial_stan_balance = stan.balance
+            initial_bob_balance = bob.balance
 
         with allure.step("Попытка перевода 200 ед. при недостатке средств"):
             with pytest.raises(ValueError, match="Недостаточно средств на счете"):
@@ -105,7 +105,7 @@ class TestAccountTransactionTemplate:
                 )
                 db_session.refresh(stan)
                 db_session.refresh(bob)
-        # =============================================================Тест
-        with allure.step("Проверяем изменение баланса"):
+
+        with allure.step("Проверить изменение баланса"):
             assert stan.balance == initial_stan_balance
             assert bob.balance == initial_bob_balance

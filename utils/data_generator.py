@@ -1,9 +1,11 @@
 import datetime
+import allure
 import random
 import string
 import uuid
 from faker import Faker
 
+from db_models.user_data import UserDbData
 from enums.location import Location
 from models.movies_models import MovieData
 
@@ -22,6 +24,7 @@ class DataGenerator:
         return f"{faker.first_name()} {faker.last_name()}"
 
     @staticmethod
+    @allure.step("Сгенерировать уникальный пароль")
     def generate_random_password():
         """
         Генерация рандомного пароля, соответствующего требованиям:
@@ -65,22 +68,23 @@ class DataGenerator:
     #     }
 
     @staticmethod
-    def generate_user_data() -> dict:
+    def generate_user_data() -> UserDbData:
         from uuid import uuid4
 
-        return {
-            "id": f"{uuid4()}",  # генерируем UUId
-            "email": DataGenerator.generate_random_email(),
-            "full_name": DataGenerator.generate_random_name(),
-            "password": DataGenerator.generate_random_password(),
-            "created_at": datetime.datetime.now(),
-            "updated_at": datetime.datetime.now(),
-            "verified": False,
-            "banned": False,
-            "roles": "{USER}",
-        }
+        return UserDbData(
+            id=str(uuid4()),
+            email=DataGenerator.generate_random_email(),
+            full_name=DataGenerator.generate_random_name(),
+            password=DataGenerator.generate_random_password(),
+            created_at=datetime.datetime.now(),
+            updated_at=datetime.datetime.now(),
+            verified=False,
+            banned=False,
+            roles="{USER}",
+        )
 
     @staticmethod
+    @allure.step("Сформировать тестовые данные для создания фильма")
     def generate_movie_data(
         name: str = None,
         published: bool = True,
@@ -115,20 +119,18 @@ class DataGenerator:
         )
 
     @staticmethod
+    @allure.step("Сгенерировать рандомную цену")
     def generate_random_price():
         """Генерация рандомной цены для movies"""
         return random.randint(1, 1000)
 
     @staticmethod
-    def generate_random_movie_name():
-        """Генерация рандомного названия фильмов"""
-        return faker.sentence(nb_words=3)
-
-    @staticmethod
+    @allure.step("Сгенерировать рандомный id пользователя")
     def generate_random_user_id():
         """Генерация рандомного id users"""
         return str(uuid.uuid4())
 
     @staticmethod
+    @allure.step("Сгенерировать рандомное имя фильма")
     def generate_random_movie_name(words_count: int = 3):
         return faker.sentence(nb_words=words_count).rstrip(".")

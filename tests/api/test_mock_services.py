@@ -48,7 +48,7 @@ def get_worldclockap_time() -> WorldClockResponse:
 
 
 class TestTodayIsHolidayServiceAPI:
-    def test_worldclock(self) -> None:
+    def test_worldclock(self):
         """Тест получения времени из внешнего API"""
         world_clock_response = get_worldclockap_time()
         # Выводим текущую дату и время
@@ -59,7 +59,7 @@ class TestTodayIsHolidayServiceAPI:
             "%Y-%m-%dT%H:%MZ"
         ), "Дата не совпадает"
 
-    def test_what_is_today(self) -> None:
+    def test_what_is_today(self):
         """Интеграционный тест с реальным сервисом"""
         world_clock_response = get_worldclockap_time()
 
@@ -76,7 +76,7 @@ class TestTodayIsHolidayServiceAPI:
             what_is_today_data.message == "Сегодня нет праздников в России."
         ), "Сегодня нет праздника!"
 
-    def test_what_is_today_BY_MOCK(self, mocker) -> None:
+    def test_what_is_today_BY_MOCK(self, mocker):
         # Создаем мок для функции get_wordlclockap_time Тест с моком внешней зависимости (изолированный)
         mock_response = Mock(currentDateTime="2025-01-01T00:00Z")
         mocker.patch(

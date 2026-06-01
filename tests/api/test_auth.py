@@ -44,16 +44,12 @@ class TestAuthApi:
     @pytest.mark.smoke
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.title("POST / register - Регистрация пользователя")
-    def test_register_user(
-        self, api_manager: ApiManager, test_user: UserTestData
-    ) -> None:
-        with allure.step("Зарегистрировать пользователя"):
-            response = api_manager.auth_api.register_user(test_user)
+    def test_register_user(self, api_manager: ApiManager, test_user: UserTestData):
+        response = api_manager.auth_api.register_user(test_user)
 
-            registered_user = deserialize_response(response, RegisteredUserResponse)
+        registered_user = deserialize_response(response, RegisteredUserResponse)
 
-        with allure.step("Проверить данные зарегистрированного пользователя"):
-            assert_register_response(registered_user, test_user)
+        assert_register_response(registered_user, test_user)
 
     @allure.title("Тест регистрации пользователя с помощью Mock")
     @allure.severity(allure.severity_level.MINOR)
@@ -93,7 +89,7 @@ class TestAuthApi:
     @allure.title("POST /login  Успешная авторизация пользователя")
     def test_login_registered_user(
         self, api_manager: ApiManager, existing_user: ExistingUser
-    ) -> None:
+    ):
 
         response = api_manager.auth_api.login_user(
             LoginUserRequest(
@@ -103,11 +99,9 @@ class TestAuthApi:
         )
         logged_in_user = deserialize_response(response, LoginUserResponse)
 
-        with allure.step("Проверить данные авторизированного пользователя"):
-            assert_logged_in_user(logged_in_user, existing_user.profile)
+        assert_logged_in_user(logged_in_user, existing_user.profile)
 
-        with allure.step("Проверить токены авторизации"):
-            assert_auth_tokens(logged_in_user)
+        assert_auth_tokens(logged_in_user)
 
     @allure.title("Авторизация пользователя ролевая модель")
     @pytest.mark.parametrize(
@@ -123,21 +117,29 @@ class TestAuthApi:
         self,
         api_manager: ApiManager,
         user: AuthenticatedUser,
-    ) -> None:
+    ):
         response = api_manager.auth_api.login_user(login_data=user.login_request)
 
         logged_in_user = deserialize_response(response, LoginUserResponse)
 
-        assert Roles(user.roles[0]) in logged_in_user.user.roles
+        with allure.step("Проверить роль авторизованного пользователя"):
+            assert Roles(user.roles[0]) in logged_in_user.user.roles
 
+    @pytest.mark.smoke
+    @allure.title("Сохранение токена в заголовках сессии")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_authenticate_set_headers(
         self, api_manager: ApiManager, existing_user: ExistingUser
-    ) -> None:
+    ):
         """Тест: Сохранение токена в заголовках сессии."""
         response = api_manager.auth_api.authenticate(existing_user.login_request)
         access_token = response.accessToken
         auth_header = api_manager.auth_api.session.headers.get("Authorization")
-        assert auth_header == f"Bearer {access_token}", "Токен в заголовке не совпадает"
+
+        with allure.step("Проверить сохранение access token в заголовке"):
+            assert (
+                auth_header == f"Bearer {access_token}"
+            ), "Токен в заголовке не совпадает"
 
 
 class TestNegativeAuthApi:
@@ -157,7 +159,7 @@ class TestNegativeAuthApi:
         existing_user: ExistingUser,
         use_registered_email: bool,
         use_valid_password: bool,
-    ) -> None:
+    ):
         email = (
             existing_user.credentials.email
             if use_registered_email
@@ -198,7 +200,7 @@ class TestNegativeAuthApi:
         api_manager: ApiManager,
         payload: dict[str, Any],
         expected_status: int,
-    ) -> None:
+    ):
         response = api_manager.auth_api.login_user(
             login_data=payload, expected_status=expected_status
         )

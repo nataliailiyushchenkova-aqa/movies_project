@@ -1,3 +1,4 @@
+import allure
 from sqlalchemy.orm import Session
 
 
@@ -9,6 +10,7 @@ class DBHelper:
     def __init__(self, db_session: Session):
         self.db_session = db_session
 
+    @allure.step("Создать пользователя в БД")
     def create_test_user(self, user_data: dict) -> UserDBModel:
         user = UserDBModel(**user_data)
         self.db_session.add(user)
@@ -16,11 +18,13 @@ class DBHelper:
         self.db_session.refresh(user)
         return user
 
+    @allure.step("Получить пользователя по id")
     def get_user_by_id(self, user_id: str):
         return (
             self.db_session.query(UserDBModel).filter(UserDBModel.id == user_id).first()
         )
 
+    @allure.step("Получить пользователя по email")
     def get_user_by_email(self, email: str):
         return (
             self.db_session.query(UserDBModel)
@@ -65,6 +69,7 @@ class DBHelper:
         self.db_session.refresh(movie)
         return movie
 
+    @allure.step("Проверить наличие фильма в бд")
     def get_movie_by_id(self, movie_id: str):
         return (
             self.db_session.query(MovieDBModel)

@@ -1,34 +1,40 @@
+import pytest_check as check
+import allure
 from entities.existing_user import ExistingUser
 from entities.authenticateduser import AuthenticatedUser
 from models.test_user_model import RegisteredUserResponse, UserTestData, LoginUserInfo
 
 
+@allure.step("Проверить данные зарегистрированного пользователя")
 def assert_register_response(
     actual: RegisteredUserResponse,
     expected: UserTestData,
 ) -> None:
-    assert actual.id is not None
-    assert actual.email == expected.email
-    assert actual.fullName == expected.fullName
-    assert "USER" in actual.roles
+    check.is_not_none(actual.id)
+    check.equal(actual.email, expected.email)
+    check.equal(actual.fullName, expected.fullName)
+
+    check.is_in("USER", actual.roles)
     if expected.verified is not None:
-        assert actual.verified == expected.verified
+        check.equal(actual.verified, expected.verified)
     else:
-        assert isinstance(actual.verified, bool)
+        check.is_true(isinstance(actual.verified, bool))
     if expected.banned is not None:
-        assert actual.banned == expected.banned
+        check.equal(actual.banned, expected.banned)
     else:
-        assert isinstance(actual.banned, bool)
+        check.is_true(isinstance(actual.banned, bool))
 
 
+@allure.step("Проверить данные авторизованного пользователя")
 def assert_logged_in_user(actual: LoginUserInfo, expected: AuthenticatedUser) -> None:
-    assert actual.user.id == expected.id
-    assert actual.user.email == expected.email
-    assert actual.user.fullName == expected.fullName
-    assert actual.user.roles == expected.roles
+    check.equal(actual.user.id, expected.id)
+    check.equal(actual.user.email, expected.email)
+    check.equal(actual.user.fullName, expected.fullName)
+    check.equal(actual.user.roles, expected.roles)
 
 
-def assert_auth_tokens(data):
+@allure.step("Проверить токены авторизации")
+def assert_auth_tokens(data) -> None:
     assert data.accessToken
     assert data.refreshToken
     assert data.expiresIn > 0

@@ -19,6 +19,7 @@ class UserAPI(CustomRequester):
         super().__init__(session=session, base_url=BASE_URL)
         self.session = session
 
+    @allure.step("Получить профиль пользователя")
     def get_user_info(self, get_user_id: int, expected_status: int = 200) -> Response:
         return self.send_request(
             method="GET",

@@ -53,7 +53,7 @@ class TestMovieApi:
     """)
     def test_get_movies_no_params_pagination(
         self, api_manager: ApiManager, default_movies_pack: list[int]
-    ) -> None:
+    ):
 
         with allure.step("Получить фильмы без параметров"):
             response = api_manager.movies_api.get_movies()
@@ -61,23 +61,23 @@ class TestMovieApi:
         response_data = deserialize_response(response, MoviesResponseSchema)
 
         with allure.step("Проверить значения пагинации"):
-            with check("Дефолтная страница == 1"):
+            with allure.step("Дефолтная страница == 1"):
                 check.equal(
                     response_data.page, 1, f"ФР: {response_data.page}. ОР: page 1"
                 )
-            with check("Вывод фильмов на страницу == 10"):
+            with allure.step("Вывод фильмов на страницу == 10"):
                 check.equal(
                     response_data.pageSize,
                     10,
                     f"ФР:{response_data.pageSize}. ОР: pageSize ==10",
                 )
-            with check("Количеств фильмов >=30"):
+            with allure.step("Количеств фильмов >=30"):
                 check.greater_equal(
                     response_data.count,
                     30,
                     f"ФР: {response_data.count}. ОР: больше 30 фильмов",
                 )
-            with check("Наличие фильмов в выдаче"):
+            with allure.step("Наличие фильмов в выдаче"):
                 check.is_true(response_data.movies, "Список фильмов пустой")
 
     @pytest.mark.smoke
@@ -112,13 +112,13 @@ class TestMovieApi:
         super_admin: AuthenticatedUser,
         filter_params: dict[str, Any],
         filter_type: str,
-    ) -> None:
+    ):
         with allure.step(f"Получить фильмы с фильтрацией: {filter_type}"):
             response = super_admin.api.movies_api.get_movies(params=filter_params)
 
         response_data = deserialize_response(response, MoviesResponseSchema)
 
-        with check("Проверить, что список не пустой"):
+        with allure.step("Проверить, что список фильмов не пустой"):
             check.is_true(
                 len(response_data.movies) > 0
             ), f"По фильтру '{filter_type}' сервер вернул пустой список "
@@ -135,7 +135,7 @@ class TestMovieApi:
     @allure.title("GET /movies  Дефолтная выдача опубликованных фильмов")
     def test_get_movies_no_params_published_status(
         self, api_manager: ApiManager, movies_pack_with_status: list[MovieFilterInfo]
-    ) -> None:
+    ):
         with allure.step("Получить фильмы без параметров"):
             response = api_manager.movies_api.get_movies()
 
@@ -182,7 +182,7 @@ class TestMovieApi:
         movies_with_valid_prices: list[MovieSchema],
         minPrice: int | None,
         maxPrice: int | None,
-    ) -> None:
+    ):
         with allure.step("Подготовить query параметры"):
             params = MoviesQueryParams(minPrice=minPrice, maxPrice=maxPrice)
             query_dict = params.model_dump(exclude_none=True)
@@ -248,15 +248,15 @@ class TestMovieApi:
         createdAt: SortOrder,
         movies_with_controlled_dates: tuple[str, list[MovieSchema]],
         comparator,
-    ) -> None:
+    ):
         test_run_id, created_movies = movies_with_controlled_dates
 
         with allure.step("Подготить квери параметры"):
             params = MoviesQueryParams(createdAt=createdAt, pageSize=20)
 
-            response = api_manager.movies_api.get_movies(params=params)
+        response = api_manager.movies_api.get_movies(params=params)
 
-            response_data = deserialize_response(response, MoviesResponseSchema)
+        response_data = deserialize_response(response, MoviesResponseSchema)
 
         with allure.step("Отфильтровать тестовые фильмы"):
             controlled_movies = [
@@ -281,9 +281,8 @@ class TestMovieApi:
      - структуру ответа
      - проверить успешное получение созданного фильма
         """)
-    def test_create_and_check_movie(self, super_admin: AuthenticatedUser) -> None:
-        with allure.step("Сформировать тестовые данные для создания фильма"):
-            movie_data = DataGenerator.generate_movie_data(published=True)
+    def test_create_and_check_movie(self, super_admin: AuthenticatedUser):
+        movie_data = DataGenerator.generate_movie_data(published=True)
 
         create_response = super_admin.api.movies_api.create_movie(movie_data)
 
@@ -331,22 +330,23 @@ class TestMovieApi:
     )
     def test_post_movie_rbac(
         self, user: AuthenticatedUser, db_helper: DBHelper, can_create: bool
-    ) -> None:
+    ):
         expected_status = 201 if can_create else 403
 
         with allure.step("Подготовить данные для создания фильма"):
             movie_data = DataGenerator.generate_movie_data()
 
-        response = user.api.movies_api.create_movie(
-            movie_data.model_dump(mode="json"), expected_status=expected_status
-        )
+        with allure.step("Проверить возможность создания фильма"):
+            response = user.api.movies_api.create_movie(
+                movie_data.model_dump(mode="json"), expected_status=expected_status
+            )
 
     @pytest.mark.regression
     @allure.story("POST movie")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.title("POST /movie Валидация структуры ответа")
     @allure.description("Цель: проверка структуры ответа создания фильма")
-    def test_post_movie_response_schema(self, super_admin: AuthenticatedUser) -> None:
+    def test_post_movie_response_schema(self, super_admin: AuthenticatedUser):
         with allure.step("Подготовить данные для создания фильма"):
             movie_data = DataGenerator.generate_movie_data()
 
@@ -356,8 +356,7 @@ class TestMovieApi:
 
         response_data = deserialize_response(response, MovieSchema)
 
-        with allure.step("Проверить соотвествие тестовых данных в ответе"):
-            assert_movie_response(response_data, movie_data)
+        assert_movie_response(response_data, movie_data)
 
     @pytest.mark.regression
     @pytest.mark.db
@@ -367,7 +366,7 @@ class TestMovieApi:
     @allure.description("Тест проверяет сохранение фильма в БД при вызове POST /movie")
     def test_post_movie_data_in_db(
         self, super_admin: AuthenticatedUser, db_helper: DBHelper
-    ) -> None:
+    ):
         with allure.step("Подготовить данные для создания фильма"):
             movie_data = DataGenerator.generate_movie_data()
 
@@ -380,8 +379,7 @@ class TestMovieApi:
             db_helper.db_session.expire_all()
             movie_id_db = db_helper.get_movie_by_id(movie.id)
 
-        with allure.step("Проверить сохранение параметров фильма в БД"):
-            assert_movie_in_db(movie_id_db, movie_data)
+        assert_movie_in_db(movie_id_db, movie_data)
 
     @pytest.mark.regression
     @pytest.mark.rbac
@@ -406,7 +404,7 @@ class TestMovieApi:
     )
     def test_patch_movie_single_field_rbac(
         self, user: AuthenticatedUser, movie_fixture: MovieSchema, can_edit: bool
-    ) -> None:
+    ):
         expected_status = 200 if can_edit else 403
 
         with allure.step("Подготовить данные для изменения одного поля фильма"):
@@ -428,7 +426,7 @@ class TestMovieApi:
     @allure.title("PATCH /movies Обновление одного поля фильма")
     def test_patch_movie_single_field(
         self, super_admin: AuthenticatedUser, movie_fixture: MovieSchema
-    ) -> None:
+    ):
         with allure.step("Подготовить данные для изменения одного поля фильма"):
             update_data = PatchMovieRequest(price=DataGenerator.generate_random_price())
 
@@ -436,12 +434,9 @@ class TestMovieApi:
 
         updated_movie = deserialize_response(response, MovieSchema)
 
-        with allure.step(
-            "Проверить обновление поля price и неизменность остальных полей"
-        ):
-            assert_partial_movie_update(
-                actual=updated_movie, original=movie_fixture, updated_fields=update_data
-            )
+        assert_partial_movie_update(
+            actual=updated_movie, original=movie_fixture, updated_fields=update_data
+        )
 
     @pytest.mark.smoke
     @pytest.mark.rbac
@@ -471,7 +466,7 @@ class TestMovieApi:
     )
     def test_delete_movie_rbac(
         self, movie_fixture: MovieSchema, user: AuthenticatedUser, can_delete: bool
-    ) -> None:
+    ):
         expected_status = 200 if can_delete else 403
 
         response = user.api.movies_api.delete_movie(
@@ -492,7 +487,7 @@ class TestMovieApi:
         super_admin: AuthenticatedUser,
         db_helper: DBHelper,
         movie_fixture: MovieSchema,
-    ) -> None:
+    ):
         movie_id = movie_fixture.id
 
         with allure.step("Проверить наличие фильма в БД до удаления"):
@@ -517,7 +512,7 @@ class TestMovieApi:
     @allure.title("PATCH /movie/id Обновление нескольких полей фильма")
     def test_patch_movie_multiple_fields(
         self, super_admin: AuthenticatedUser, movie_fixture: MovieSchema
-    ) -> None:
+    ):
         with allure.step("Подготовить данные для изменения параметров"):
             update_data = PatchMovieRequest(
                 name=DataGenerator.generate_random_movie_name(),
@@ -529,10 +524,9 @@ class TestMovieApi:
 
         updated_movie = deserialize_response(response, MovieSchema)
 
-        with allure.step("Проверить обновление полей и неизменность остальных"):
-            assert_partial_movie_update(
-                actual=updated_movie, original=movie_fixture, updated_fields=update_data
-            )
+        assert_partial_movie_update(
+            actual=updated_movie, original=movie_fixture, updated_fields=update_data
+        )
 
 
 @pytest.mark.api
@@ -544,16 +538,14 @@ class TestNegativeMovieAPI:
     @allure.title(
         "POST /movies Негативный тест. Создание фильма с дублирующим названием"
     )
-    def test_negative_post_movie_duplicate_name(
-        self, super_admin: AuthenticatedUser
-    ) -> None:
+    def test_negative_post_movie_duplicate_name(self, super_admin: AuthenticatedUser):
         with allure.step("Подготовить уникальные тестовые данные для фильма"):
             unique_name = DataGenerator.generate_random_movie_name()
             movie_data = DataGenerator.generate_movie_data(name=unique_name)
 
         with allure.step("Создать исходный фильм"):
             response1 = super_admin.api.movies_api.create_movie(movie_data)
-            response1_data = MovieSchema.model_validate(response1.json())
+            response1_data = deserialize_response(response1, MovieSchema)
 
         with allure.step("Подготовить данные второго фильма с тем же названием"):
             movie_data_same_name = DataGenerator.generate_movie_data(name=unique_name)
@@ -573,7 +565,7 @@ class TestNegativeMovieAPI:
     @allure.story("POST movie")
     @allure.severity(allure.severity_level.MINOR)
     @allure.title("Негативный тест: Создание фильма без обязательного параметра name")
-    def test_negative_post_movie_no_name(self, super_admin: AuthenticatedUser) -> None:
+    def test_negative_post_movie_no_name(self, super_admin: AuthenticatedUser):
         with allure.step(
             "Подготовить данные для создания фильма без обязательного name"
         ):
@@ -586,8 +578,8 @@ class TestNegativeMovieAPI:
         )
 
         with allure.step("Проверить наличие ошибки в ответе"):
-            response_data = response.json()
-            assert "message" in response_data, "Отсутвует сообщение об ошибке"
+            response_data = deserialize_response(response, ErrorResponse)
+            assert any("name" in message for message in response_data.message)
 
     @pytest.mark.regression
     @allure.story("POST movie")

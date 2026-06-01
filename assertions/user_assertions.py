@@ -1,3 +1,5 @@
+from pytest_check import check
+import allure
 from models.test_user_model import (
     PatchUserPayload,
     PatchUserResponse,
@@ -5,6 +7,7 @@ from models.test_user_model import (
 )
 
 
+@allure.step("Проверка результата частичного обновления пользователя")
 def assert_partial_user_update(
     response: PatchUserResponse,
     original_user: UserTestData,
@@ -18,10 +21,14 @@ def assert_partial_user_update(
     for field_name, expected_value in patch_data.items():
         actual_value = getattr(response, field_name)
 
-        assert actual_value == expected_value, (
-            f"Поле '{field_name}' не обновилось. "
-            f"ОР: {expected_value} "
-            f"ФР: {actual_value}"
+        check.equal(
+            actual_value,
+            expected_value,
+            (
+                f"Поле '{field_name}' не обновилось. "
+                f"ОР: {expected_value} "
+                f"ФР: {actual_value}"
+            ),
         )
 
     original_user_data = original_user.model_dump()
@@ -34,7 +41,11 @@ def assert_partial_user_update(
         actual_value = getattr(response, field_name)
         expected_value = getattr(original_user, field_name)
 
-        assert actual_value == expected_value, (
-            f"Поле '{field_name}' изменилось после PATCH. "
-            f"ОР: {expected_value}, ФР: {actual_value}"
+        check.equal(
+            actual_value,
+            expected_value,
+            (
+                f"Поле '{field_name}' изменилось после PATCH. "
+                f"ОР: {expected_value}, ФР: {actual_value}"
+            ),
         )
