@@ -1,32 +1,32 @@
 import datetime
 from dataclasses import dataclass
 from pydantic import BaseModel, Field, field_serializer
-from typing import Optional, List
+from typing import Any, List
 from enums.location import Location
 
 
 class MoviesQueryParams(BaseModel):
     """Модель параметров для GET /movies"""
 
-    pageSize: Optional[int] = None
-    page: Optional[int] = None
-    minPrice: Optional[int] = None
-    maxPrice: Optional[int] = None
-    locations: Optional[List[Location]] = None
-    published: Optional[bool] = None
-    genreId: Optional[int] = None
-    createdAt: Optional[str] = None
+    pageSize: int | None = None
+    page: int | None = None
+    minPrice: int | None = None
+    maxPrice: int | None = None
+    locations: list[Location] | None = None
+    published: bool | None = None
+    genreId: int | None = None
+    createdAt: str | None = None
 
-    def to_dict(self):
+    def to_dict(self) -> dict[str, Any]:
         """Преобразует в словарь исключая None значения"""
-        return {k: v for k, v in self.model_dump().items() if v is not None}
+        return self.model_dump(exclude_none=True)
 
 
 class MovieData(BaseModel):
     # Модель body для POST/movies
     name: str = Field(..., description="Название фильма")
-    imageUrl: Optional[str] = Field(default="https://image.url", description="Ссылка")
-    price: int = Field(default=100, ge=0, description="Цена фильма")
+    imageUrl: str | None = Field(default="https://image.url", description="Ссылка")
+    price: int = Field(default=100, description="Цена фильма")
     description: str = Field(..., description="Описание фильма")
     location: Location = Field(default=Location.SPB, description="Локация фильма")
     published: bool = Field(default=True, description="Опубликован ли фильм")
@@ -48,13 +48,19 @@ class MovieSchema(BaseModel):
     name: str
     price: int
     description: str
-    imageUrl: Optional[str]
+    imageUrl: str | None = None
     location: Location
     published: bool
     genreId: int
     genre: GenreSchema
     createdAt: datetime.datetime
-    rating: int
+    rating: int | None = None
+
+
+class MovieFilterInfo(BaseModel):
+    id: int
+    published: bool
+    price: int
 
 
 # Модель ответа
@@ -64,3 +70,13 @@ class MoviesResponseSchema(BaseModel):
     page: int
     pageSize: int
     pageCount: int
+
+
+class PatchMovieRequest(BaseModel):
+    name: str | None = None
+    imageUrl: str | None = None
+    price: int | None = None
+    description: str | None = None
+    location: Location | None = None
+    published: bool | None = None
+    genreId: int | None = None
