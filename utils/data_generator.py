@@ -134,3 +134,8 @@ class DataGenerator:
     @allure.step("Сгенерировать рандомное имя фильма")
     def generate_random_movie_name(words_count: int = 3):
         return faker.sentence(nb_words=words_count).rstrip(".")
+
+    @staticmethod
+    @allure.step("Сгенерировать рандомный отзыв")
+    def generate_random_review(words_count: int = 5):
+        return faker.sentence(nb_words=words_count).rstrip(".")

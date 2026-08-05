@@ -5,4 +5,5 @@ pytest_plugins = [
     "fixtures.movies",
     "fixtures.payloads",
     "fixtures.factories.user_payload_factory",
+    "fixtures.ui.ui_conftest",
 ]

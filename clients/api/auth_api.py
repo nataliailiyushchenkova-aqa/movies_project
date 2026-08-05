@@ -33,7 +33,7 @@ class AuthAPI(CustomRequester):
 
     @allure.step("Отправить запрос на login пользователя")
     def login_user(
-        self, login_data: LoginUserRequest | dict[str, Any], expected_status: int = 200
+        self, login_data: LoginUserRequest | dict[str, Any], expected_status: int = 201
     ) -> Response:
         return self.send_request(
             method="POST",

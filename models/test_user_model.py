@@ -35,7 +35,7 @@ class RegisteredUserResponse(BaseModel):
     email: str = Field(pattern=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
     fullName: str
     verified: bool
-    banned: bool
+    banned: bool | None = None
     roles: List[str]
     createdAt: str
 
