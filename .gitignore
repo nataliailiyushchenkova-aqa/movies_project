@@ -11,4 +11,5 @@ __pycache__/
 .token
 .env
 tests/movies_project.git/
+allure-results/
 

@@ -1,169 +1,281 @@
 import uuid
 import pytest
+import allure
 from copy import deepcopy
 from typing import Dict, Any
 
+from pyexpat.errors import messages
+
+from assertions.auth_assertions import assert_register_response
+from assertions.user_assertions import assert_partial_user_update
 from clients.api.api_manager import ApiManager
-from entities.user import User
+from entities.authenticateduser import AuthenticatedUser
+from fixtures.conftest_infrastructure import api_manager
+from models.error import ErrorResponse
 from models.test_user_model import (
-    TestUserData,
+    UserTestData,
     RegisteredUserResponse,
     LoginUserResponse,
     PatchUserResponse,
+    PatchUserPayload,
 )
+from utils.data_generator import DataGenerator
+from utils.response_parser import deserialize_response
 
 
+@pytest.mark.api
+@allure.epic("User API")
 class TestUserApi:
-
-    def test_post_user_default(self, super_admin: User, user_payload: dict[str, Any]):
-        """Тест: Создание пользователя с дефолтными значениями"""
-        payload = user_payload
-        response = super_admin.api.user_api.create_user(payload)
-        response_data = RegisteredUserResponse.model_validate(response.json())
-
-        assert response_data.email == user_payload["email"]
-        assert response_data.fullName == user_payload["fullName"]
-        assert [role.value for role in response_data.roles] == user_payload["roles"]
-        assert response_data.verified == user_payload["verified"]
-
     @pytest.mark.smoke
-    def test_post_banned_user(
-        self, super_admin: User, banned_user_payload: TestUserData
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("POST user")
+    @allure.title("POST / user - Создание пользователя с дефолтными значениями")
+    def test_post_user_default(
+        self, super_admin: AuthenticatedUser, user_payload: UserTestData
     ):
-        """Тест: Создание пользователя banned: True"""
-        response = super_admin.api.user_api.create_user(banned_user_payload)
-        response_data = RegisteredUserResponse.model_validate(response.json())
+        with allure.step("Подготовить данные создания пользователя"):
+            payload = user_payload
+        response = super_admin.api.user_api.create_user(payload)
 
-        assert response_data.email == banned_user_payload["email"]
-        assert response_data.verified is True
-        assert response_data.banned is True
+        response_data = deserialize_response(response, RegisteredUserResponse)
+
+        assert_register_response(response_data, user_payload)
+
+    @pytest.mark.regression
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.story("POST user")
+    @allure.title("POST / user - Создание пользователя c banned: True")
+    def test_post_banned_user(
+        self, super_admin: AuthenticatedUser, banned_user_payload: UserTestData
+    ):
+        response = super_admin.api.user_api.create_user(banned_user_payload)
+        response_data = deserialize_response(response, RegisteredUserResponse)
+        assert_register_response(response_data, banned_user_payload)
 
     @pytest.mark.smoke
-    def test_get_user_by_locator(self, super_admin: User, user_payload: dict[str, Any]):
-        """Тест: Получение пользователя по id/email super_admin"""
-        created_user = RegisteredUserResponse(
-            **super_admin.api.user_api.create_user(user_payload).json()
-        )
-        get_user_by_id = RegisteredUserResponse(
-            **super_admin.api.user_api.get_user_info(created_user.id).json()
-        )
-        get_user_by_email = RegisteredUserResponse(
-            **super_admin.api.user_api.get_user_info(created_user.email).json()
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("GET user")
+    @allure.title("GET / user - Получение пользователя по id/email super_admin")
+    def test_get_user_by_locator(
+        self, super_admin: AuthenticatedUser, user_payload: UserTestData
+    ):
+        with allure.step("Создать пользователя для запроса"):
+            created_user = deserialize_response(
+                super_admin.api.user_api.create_user(user_payload),
+                RegisteredUserResponse,
+            )
+
+        with allure.step("Получить пользователя по id"):
+            get_user_by_id = deserialize_response(
+                super_admin.api.user_api.get_user_info(created_user.id),
+                RegisteredUserResponse,
+            )
+
+        with allure.step("Получить пользователя по email"):
+            get_user_by_email = deserialize_response(
+                super_admin.api.user_api.get_user_info(created_user.email),
+                RegisteredUserResponse,
+            )
+
+        with allure.step("Проверить консистентность данных между запросами"):
+            assert (
+                get_user_by_id == get_user_by_email
+            ), "Содержание ответов должно быть идентичным"
+
+        assert_register_response(get_user_by_id, user_payload)
+
+    @pytest.mark.parametrize(
+        "user",
+        [
+            pytest.param("admin", id="admin_can get user"),
+            pytest.param("super_admin", id="super_admin can get user"),
+        ],
+        indirect=["user"],
+    )
+    @pytest.mark.rbac
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("GET user")
+    @allure.title("GET / user - Получение пользователя по id/email ролевая модель")
+    def test_get_user_by_locator_rbac(
+        self,
+        user: AuthenticatedUser,
+        super_admin: AuthenticatedUser,
+        user_payload: UserTestData,
+    ):
+        created_user = deserialize_response(
+            super_admin.api.user_api.create_user(user_payload),
+            RegisteredUserResponse,
         )
 
-        assert (
-            get_user_by_id == get_user_by_email
-        ), "Содержание ответов должно быть идентичным"
-        assert get_user_by_id.email == user_payload["email"]
-        assert get_user_by_id.fullName == user_payload["fullName"]
-        assert [role.value for role in get_user_by_id.roles] == user_payload["roles"]
-        assert get_user_by_id.verified is True
+        with allure.step("Получить пользователя по id"):
+            get_user_by_id = deserialize_response(
+                user.api.user_api.get_user_info(created_user.id), RegisteredUserResponse
+            )
 
-    def test_get_user_by_locator_admin(self, admin: User, user_payload: dict[str, Any]):
-        created_user = RegisteredUserResponse(
-            **admin.api.user_api.create_user(user_payload).json()
-        )
-        get_user_by_id = RegisteredUserResponse(
-            **admin.api.user_api.get_user_info(created_user.id).json()
-        )
-        get_user_by_email = RegisteredUserResponse(
-            **admin.api.user_api.get_user_info(created_user.email).json()
-        )
+        with allure.step("Получить пользователя по email"):
+            get_user_by_email = deserialize_response(
+                user.api.user_api.get_user_info(created_user.email),
+                RegisteredUserResponse,
+            )
 
-        assert get_user_by_id == get_user_by_email, "Тело ответов должны быть идентичны"
-        assert get_user_by_id.id != "", "ID не должно быть пустым"
-        assert get_user_by_id.fullName == user_payload["fullName"]
-        assert [role.value for role in get_user_by_id.roles] == user_payload["roles"]
-        assert get_user_by_id.verified is True
+        with allure.step("Проверить консистентность данных между запросами"):
+            assert (
+                get_user_by_id == get_user_by_email
+            ), "Тело ответов должны быть идентичны"
 
+    @pytest.mark.regression
+    @allure.story("PATCH user")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.title("PATCH /user - Изменение пользователя: один параметр")
     def test_patch_user_one_field(
         self,
-        super_admin: User,
-        user_payload: dict[str, Any],
-        get_user_id: str,
-        patch_user_payload_one_field: dict[str, Any],
+        super_admin: AuthenticatedUser,
+        user_payload: UserTestData,
+        existing_user_id: str,
+        patch_user_payload_one_field: PatchUserPayload,
     ):
-        """Тест: Изменение пользователя: один параметр"""
-        response = PatchUserResponse(
-            **super_admin.api.user_api.patch_user(
-                get_user_id, data=patch_user_payload_one_field
-            ).json()
+
+        response = super_admin.api.user_api.patch_user(
+            existing_user_id, data=patch_user_payload_one_field
+        )
+        response_data = deserialize_response(response, PatchUserResponse)
+
+        assert_partial_user_update(
+            response=response_data,
+            original_user=user_payload,
+            patch_payload=patch_user_payload_one_field,
         )
 
-        assert response.banned == patch_user_payload_one_field["banned"]
-        assert response.email == user_payload["email"]
-        assert response.fullName == user_payload["fullName"]
-
+    @pytest.mark.regression
+    @allure.story("PATCH user")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.title("PATCH /user - Изменение пользователя: несколько параметров ")
     def test_patch_user_multiple_field(
         self,
-        super_admin: User,
-        user_payload: dict[str, Any],
-        get_user_id: str,
-        patch_user_payload_multiple_fields: dict[str, Any],
+        super_admin: AuthenticatedUser,
+        user_payload: UserTestData,
+        existing_user_id: str,
+        patch_user_payload_multiple_fields: PatchUserPayload,
     ):
-        """Тест: Изменение пользователя: несколько параметров"""
-        response = PatchUserResponse(
-            **super_admin.api.user_api.patch_user(
-                get_user_id, data=patch_user_payload_multiple_fields
-            ).json()
+        response = super_admin.api.user_api.patch_user(
+            existing_user_id, data=patch_user_payload_multiple_fields
         )
 
-        assert response.banned == patch_user_payload_multiple_fields["banned"]
-        assert response.email == patch_user_payload_multiple_fields["email"]
-        assert response.verified == patch_user_payload_multiple_fields["verified"]
-        assert response.fullName == user_payload["fullName"]
+        response_data = deserialize_response(response, PatchUserResponse)
 
-    @pytest.mark.xfail(
-        reason="возвращается 200 и пустое тело на запрос GET удаленного Id юзера"
-    )
-    def test_delete_user(self, super_admin: User, get_user_id: str):
-        """Тест: Успешное удаление пользователя"""
-        response = super_admin.api.user_api.delete_user(get_user_id)
-        assert response.json().get("success") is True
-        check_delete_user = super_admin.api.user_api.get_user_info(
-            get_user_id, expected_status=404
+        assert_partial_user_update(
+            response=response_data,
+            original_user=user_payload,
+            patch_payload=patch_user_payload_multiple_fields,
         )
-        check_delete_user_data = check_delete_user.json()
 
-        assert "message" in check_delete_user_data
+    @pytest.mark.smoke
+    @allure.story("DELETE user")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.title("DELETE / user - Успешное удаление пользователя")
+    def test_delete_user(self, super_admin: AuthenticatedUser, existing_user_id: str):
+        response = super_admin.api.user_api.delete_user(existing_user_id)
+        with allure.step("Проверить статус код успешного удаления"):
+            assert response.status_code in (200, 204)
+
+        with allure.step("Проверить, что пользователь удалён и недоступен"):
+            check_delete_user = super_admin.api.user_api.get_user_info(
+                existing_user_id, expected_status=200
+            )
+            assert check_delete_user.json() == {}
 
 
+@pytest.mark.api
+@pytest.mark.negative
 class TestNegativeUserApi:
+    @pytest.mark.regression
+    @pytest.mark.rbac
+    @allure.story("GET user")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title(
+        "GET /user Негативный тест. Получение пользователя обычным пользователем"
+    )
+    def test_negative_get_user_by_id_common_user(
+        self, common_user: AuthenticatedUser, existing_user_id: str
+    ):
+        response = common_user.api.user_api.get_user_info(
+            existing_user_id, expected_status=403
+        )
 
-    def test_negative_get_user_by_id_common_user(self, common_user):
-        common_user.api.user_api.get_user_info(common_user.email, expected_status=403)
+        with allure.step("Проверить структуру и содержание ошибки доступа"):
+            error_response = deserialize_response(response, ErrorResponse)
+            assert "Forbidden" in error_response.message
 
+    @pytest.mark.regression
+    @allure.story("POST user")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title(
+        "POST / Негативный тест. Создание уже зарегистрированного пользователя"
+    )
     def test_negative_post_duplicate_user(
         self,
-        super_admin: User,
-        duplicate_registered_user_payload: TestUserData,
+        super_admin: AuthenticatedUser,
+        existing_user_payload: RegisteredUserResponse,
     ):
-        """Негативный тест: Создание зарегистрированного пользователя"""
+        with allure.step("Подготовить данные для создания пользователя"):
+            duplicate_password = DataGenerator.generate_random_password()
+
+            duplicate_payload = UserTestData(
+                email=existing_user_payload.email,
+                fullName=existing_user_payload.fullName,
+                password=duplicate_password,
+                passwordRepeat=duplicate_password,
+                roles=existing_user_payload.roles,
+                verified=existing_user_payload.verified,
+                banned=existing_user_payload.banned,
+            )
+
         response = super_admin.api.user_api.create_user(
-            duplicate_registered_user_payload, expected_status=409
+            duplicate_payload, expected_status=409
         )
-        response_data = response.json()
 
-        assert "message" in response_data, "Отсуствует сообщение об ошибке"
+        with allure.step("Проверить структуру и содержание ошибки"):
+            response_data = deserialize_response(response, ErrorResponse)
+            assert (
+                response_data.message
+                == "Пользователь с таким email уже зарегистрирован"
+            )
 
+    @pytest.mark.regression
+    @allure.story("DELETE user")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title(
+        "DELETE / user Негативный тест. Удаление несуществующего пользователя."
+    )
     def test_negative_delete_nonexisting_user(
-        self, super_admin: User, unexisting_user_id: uuid.UUID
+        self, super_admin: AuthenticatedUser, unexisting_user_id: str
     ):
-        """Негативный тест: Удаление несуществующего пользователя"""
-        response = super_admin.api.user_api.delete_user(
-            unexisting_user_id, expected_status=404
-        )
-        response_data = response.json()
+        with allure.step("Удалить несуществующего пользователя"):
+            response = super_admin.api.user_api.delete_user(
+                unexisting_user_id, expected_status=404
+            )
 
-        assert "message" in response_data, "Отсутсвует сообщение об ошибке"
+        with allure.step("Проверить структуру и содержание ошибки"):
+            response_data = deserialize_response(response, ErrorResponse)
 
+            assert response_data.message == "Not Found"
+
+    @pytest.mark.regression
+    @allure.story("DELETE user")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title(
+        "DELETE / user Негативный тест. Создание пользователя без обязательного email"
+    )
     def test_negative_create_user_no_email(
-        self, super_admin: User, user_payload: dict[str, Any]
+        self, super_admin: AuthenticatedUser, user_payload: UserTestData
     ):
-        """Негативный тест: Создание пользователя без обязательного email"""
-        payload = deepcopy(user_payload)
-        payload.pop("email")
-        response = super_admin.api.user_api.create_user(payload, expected_status=400)
-        response_data = response.json()
+        with allure.step("Подготовить данные для создания пользователя без email"):
+            payload = user_payload.model_copy(update={"email": None})
 
-        assert "message" in response_data, "Отсутвует сообщение об ошибке"
+        response = super_admin.api.user_api.create_user(payload, expected_status=400)
+
+        with allure.step("Проверить структуру и содержание ошибки"):
+            response_data = deserialize_response(response, ErrorResponse)
+
+            assert "email" in " ".join(response_data.message)
+            assert "должно быть строкой" in " ".join(response_data.message)
