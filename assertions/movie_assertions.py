@@ -77,6 +77,7 @@ def assert_partial_movie_update(
         )
 
 
+@allure.step("Проверить сортировку фильмов по дате создания")
 def assert_movies_sorted_by_created_at(
     movies: list[MovieSchema], comparator: Callable
 ) -> None:
@@ -88,6 +89,7 @@ def assert_movies_sorted_by_created_at(
         ), f"Неверная сортировка. \nTeкущая дата: {current_movie.createdAt}, следующая дата: {next_movie.createdAt}"
 
 
+@allure.step("Проверить фильтрацию фильмов по цене")
 def assert_movie_price_filter(
     movie: MovieSchema, filter_params: dict[str, Any]
 ) -> None:
@@ -99,6 +101,7 @@ def assert_movie_price_filter(
         )
 
 
+@allure.step("Проверить фильтрацию фильмов по локации")
 def assert_movie_location_filter(
     movie: MovieSchema, filter_params: dict[str, Any]
 ) -> None:
@@ -110,6 +113,7 @@ def assert_movie_location_filter(
         )
 
 
+@allure.step("Проверить фильтрацию фильмов по жанру")
 def assert_movie_genre_filter(
     movie: MovieSchema, filter_params: dict[str, Any]
 ) -> None:

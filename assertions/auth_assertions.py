@@ -35,6 +35,6 @@ def assert_logged_in_user(actual: LoginUserInfo, expected: AuthenticatedUser) ->
 
 @allure.step("Проверить токены авторизации")
 def assert_auth_tokens(data) -> None:
-    assert data.accessToken
-    assert data.refreshToken
-    assert data.expiresIn > 0
+    check.is_true(bool(data.accessToken), "accessToken пустой")
+    check.is_true(bool(data.refreshToken), "refreshToken пустой")
+    check.greater(data.expiresIn, 0, "expiresIn должен быть > 0")

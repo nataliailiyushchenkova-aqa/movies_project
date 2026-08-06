@@ -13,7 +13,7 @@ from entities.authenticateduser import AuthenticatedUser
 from dotenv import load_dotenv
 from typing import Any
 from enums.roles import Roles
-from fixtures.database import created_user
+from fixtures.conftest_database import created_user
 from models.test_user_model import (
     UserTestData,
     PatchUserPayload,

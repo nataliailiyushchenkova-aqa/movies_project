@@ -11,13 +11,13 @@ class CinescopRegisterPage(BasePage):
         self.url = f"{self.home_url}register"
 
         self.full_name_input = page.locator("[data-qa-id='register_full_name_input']")
-        self.email_input = page.locator("[data-qa-id='register_email_input']")
+        self.email_input = page.locator("//input[@name='email']")
         self.password_input = page.locator("[data-qa-id='register_password_input']")
         self.repeat_password_input = page.locator(
             "[data-qa-id='register_password_repeat_input']"
         )
         self.register_button = page.locator("[data-qa-id='register_submit_button']")
-        self.sign_button = page.get_by_role("button", name="Войти")
+        self.sign_button = page.locator("a[ href='/login']")
 
     @allure.step("Открыть страницу регистрации")
     def open(self):

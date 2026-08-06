@@ -10,7 +10,7 @@ from assertions.auth_assertions import assert_register_response
 from assertions.user_assertions import assert_partial_user_update
 from clients.api.api_manager import ApiManager
 from entities.authenticateduser import AuthenticatedUser
-from fixtures.infrastructure import api_manager
+from fixtures.conftest_infrastructure import api_manager
 from models.error import ErrorResponse
 from models.test_user_model import (
     UserTestData,

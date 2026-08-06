@@ -10,8 +10,8 @@ class CinescopeLoginPage(BasePage):
         super().__init__(page)
         self.page = page
         self.url = f"{self.home_url}/login"
-        self.email_input = page.locator("input[data-qa-id='login_email_input']")
-        self.password_input = page.locator("input[data-qa-id='login_password_input']")
+        self.email_input = page.locator("#email")
+        self.password_input = page.locator("[name='password']")
 
         self.login_button = page.locator("button[data-qa-id='login_submit_button']")
         self.register_button = page.get_by_role("link", name="Зарегистрироваться")

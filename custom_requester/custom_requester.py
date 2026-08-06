@@ -31,6 +31,7 @@ class CustomRequester:
         self.logger: logging.Logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
 
+    @allure.step("Отправить запрос {method} {endpoint}")
     def send_request(
         self,
         method: HttpMethod,
